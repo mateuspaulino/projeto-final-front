@@ -1,0 +1,99 @@
+<div id="page-content" ng-controller="usuarioController">
+    <!-- Forms General Header -->
+    <div class="content-header">
+        <div class="header-section">
+            <h1>
+                <i class="gi gi-notes_2"></i>Novo usuário<br><small>Em caso de dúvidas, contate o suporte</small>
+            </h1>
+        </div>
+    </div>
+    <ul class="breadcrumb breadcrumb-top">
+        <li>Usuário</li>
+        <li><a href="">Criar</a></li>
+    </ul>
+    <!-- END Forms General Header -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Basic Form Elements Block -->
+            <div class="block">
+                <!-- Basic Form Elements Title -->
+                <div class="block-title">
+                    <div class="block-options pull-right">
+                        <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-default toggle-bordered enable-tooltip" data-toggle="button" title="Toggles .form-bordered class">Sem bordas</a>
+                    </div>
+                    <h2><strong>Informações</strong> Básicas</h2>
+                </div>
+                <!-- END Form Elements Title -->
+
+                <!-- Basic Form Elements Content -->
+                <form action="page_forms_general.html" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" onsubmit="return false;">
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="nome">Nome</label>
+                        <div class="col-md-9">
+                            <input type="text" id="nome" name="nome" class="form-control" placeholder="Emanoel">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="email">Email</label>
+                        <div class="col-md-9">
+                            <input type="email" id="email" name="email" class="form-control" placeholder="emanoel@gmail.com">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="login">Login</label>
+                        <div class="col-md-9">
+                            <input type="text" id="login" name="login" class="form-control" placeholder="emanoelsantos">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="senha">Senha</label>
+                        <div class="col-md-9">
+                            <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Ativo</label>
+                        <div class="col-md-9">
+                            <div class="radio">
+                                <label for="ativo1">
+                                    <input type="radio" id="ativo1" name="ativo" value="sim"> Sim
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label for="ativo2">
+                                    <input type="radio" id="ativo2" name="ativo" value="nao"> Não
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="perfil">Perfil</label>
+                        <div class="col-md-9">
+                            <select id="perfil" name="perfil" class="form-control" size="1">
+                                <option value="1">Gerente</option>
+                                <option value="2">Diretor</option>
+                                <option value="3">Professor</option>
+                                <option value="4">Coordenador</option>
+                                <option value="5">Reprografia</option>
+                                <option value="6">TI</option>
+                            </select>
+                        </div>
+                    </div>
+                   
+                    <div class="form-group form-actions">
+                        <div class="col-md-9 col-md-offset-3">
+                            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> Criar</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- END Basic Form Elements Content -->
+            </div>
+            <!-- END Basic Form Elements Block -->
+        </div>
+
+    </div>
+
+</div>
