@@ -46,7 +46,7 @@ gulp.task('browserLive',() => {
 		port: 8000,
 		server: {
 			baseDir: [
-				'./',
+				'./projeto',
 			]
 		}
 	});
