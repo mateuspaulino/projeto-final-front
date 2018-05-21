@@ -26,9 +26,23 @@ var app = angular.module('app', ['ngRoute']);
 //     .otherwise({redirectTo:"/"});
 // })
 
-app.controller('appController',function($scope){
 
-});
+function verificaLogin(){
+  var token = localStorage.getItem('userToken');
+
+  if(token=="" || !token || token=="undefinec"){
+    window.location.href = './login.html';
+  }
+}
+
+function logout(){
+  localStorage.clear();
+  window.location.href = './login.html';
+}
+
+app.controller("appController", function($scope){
+  verificaLogin();
+})
 
 app.config(function($routeProvider) {
   $routeProvider
@@ -40,10 +54,17 @@ app.config(function($routeProvider) {
     templateUrl: '../static/view/home.html',
     controller: '',
   })
-  .otherwise({
+  .when('/home', {
     redirectTo: '/'
-  });   
+  })
+  // .otherwise({
+  //   redirectTo: '/'
+  // });   
 });
+
+// app.config(function($httpProvider){
+//   $httpProvider.interceptors.push('tokenInterceptor');
+// });
 
 //  // configure html5 to get links working on jsfiddle
 //  $locationProvider.html5Mode(true);
