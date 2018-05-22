@@ -124,41 +124,17 @@
                                 <li class="sidebar-header">
                                     <span class="sidebar-header-title">MENU</span>
                                 </li>
-                                <li ng-show="checarPermissoes('TI, Professor')">
-                                    <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator"></i><i class="gi gi-certificate sidebar-nav-icon"></i>Usuários</a>
+                                <li ng-show="checarPermissoes('TI, Gerente')">
+                                    <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator"></i><i class="gi gi-plus sidebar-nav-icon"></i>Cadastrar</a>
                                     <ul>
-                                        <li>
-                                            <a ng-href="#!/usuario">Novo</a>
+                                        <li ng-show="checarPermissoes('TI')">
+                                            <a ng-href="#!/cadastrar-usuario">Usuario</a>
                                         </li>
-                                        <li>
-                                            <a href="page_ui_grid_blocks.html">Editar</a>
+                                        <li ng-show="checarPermissoes('TI')">
+                                            <a ng-href="#!/cadastrar-disciplina">Disciplina</a>
                                         </li>
-                                        <li>
-                                            <a href="page_ui_grid_blocks.html">Grid &amp; Blocks</a>
-                                        </li>
-                                        <li>
-                                            <a href="page_ui_draggable_blocks.html">Draggable Blocks</a>
-                                        </li>
-                                        <li>
-                                            <a href="page_ui_typography.html">Typography</a>
-                                        </li>
-                                        <li>
-                                            <a href="page_ui_buttons_dropdowns.html">Buttons &amp; Dropdowns</a>
-                                        </li>
-                                        <li>
-                                            <a href="page_ui_navigation_more.html">Navigation &amp; More</a>
-                                        </li>
-                                        <li>
-                                            <a href="page_ui_horizontal_menu.html">Horizontal Menu</a>
-                                        </li>
-                                        <li>
-                                            <a href="page_ui_progress_loading.html">Progress &amp; Loading</a>
-                                        </li>
-                                        <li>
-                                            <a href="page_ui_preloader.html">Page Preloader</a>
-                                        </li>
-                                        <li>
-                                            <a href="page_ui_color_themes.html">Color Themes</a>
+                                        <li ng-show="checarPermissoes('Gerente')">
+                                            <a ng-href="#!/cadastrar-centro-de-custo">Centro de Custo</a>
                                         </li>
                                     </ul>
                                 </li>

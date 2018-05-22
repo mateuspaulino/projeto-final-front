@@ -59,7 +59,7 @@ app.controller("appController", function($scope, $http){
 
 app.config(function($routeProvider) {
   $routeProvider
-   .when('/usuario', {
+  .when('/cadastrar-usuario', {
     templateUrl: '../static/view/usuario.html',
     controller: 'usuarioController',
   })
