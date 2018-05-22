@@ -11,7 +11,7 @@ app.factory("tokenInterceptor", function($q, $location){
 		
 		  'responseError': function (rejection){
 	    	
-	    	if(rejection.status==401 || rejection.status==501){
+	    	if(rejection.status==401 || rejection.status==501 || rejection.codigo==401 || rejection.codigo==501){
                 // $location.path("/login");
                 window.location.href = './login.html';
 	    	}
