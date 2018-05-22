@@ -1,72 +1,54 @@
 app.controller("loginController", function($scope, $location, $http){
 
-    //limpaToken
-    localStorage.clear();
+  //limpaToken
+  localStorage.clear();
 
-    $scope.usuario={};
-	
-	$scope.token="";
+  $scope.usuario={};
 	
 	$scope.autenticar= function(){
 
-      console.log("Chamou Autenticar " + $scope.usuario.nome + " " + $scope.usuario.senha )
+    var req = {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://18.228.37.157/reprografiaapi/seguranca/logar",
+      method: "POST",
+      headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+      },
+      data: {
+        client_id: "exemploaplicativocliente",
+        client_secret: "9834ba657bb2c60b5bb53de6f4201905",
+        grant_type: "password",
+        username: $scope.usuario.nome,
+        password: $scope.usuario.senha
+      }
+    }
 
-
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "http://18.228.37.157/reprografiaapi/seguranca/logar",
-            "method": "POST",
-            "headers": {
-              "Content-Type": "application/x-www-form-urlencoded",
-              "Authorization": "Basic Og==",
-              "Cache-Control": "no-cache",
-              "Postman-Token": "80007493-6b3d-480a-a055-5155b4f8789e"
-            },
-            "data": {
-              "client_id": "exemploaplicativocliente",
-              "client_secret": "9834ba657bb2c60b5bb53de6f4201905",
-              "grant_type": "password",
-              "username": "suporte",
-              "password": "123456"
-            }
-          }
+    $.ajax(req).done(function (response) {
+      //se houver erro na resposta
+      if(response.error){
+        //mostra o erro que deu no login
+        alert(response.error_description);
+      }else{
+        //salva o token e o tipo no storage, e depois redireciona
+        localStorage.setItem("userToken", response.access_token);
+        // depois botar o tipo, ta salvando o nome
+        localStorage.setItem("tipoUsuario", response.nome);
+        console.log(response);
+        setTimeout(function(){
+          window.location.href = './';
+        },200)
+      }
+    }).fail(function(response) {
+      alert( "error" );
+    })
+       
+    // $http(req).then(function(response){
+    //     console.log(response);
+    // }, function(response){
+    //     console.log(response);
+    // });
           
-          $.ajax(settings).done(function (response) {
-            console.log(response);
-          });
-          
-          // testes storade
-          localStorage.setItem("userToken", "aquivaiotoken");
-          localStorage.setItem("tipoUsuario", "suporte");
-          // window.location.href = './';
-          // end testes
-
-        //    var req = {
-        //     "async": true,
-        //     "crossDomain": true,
-        //     "url": "http://18.228.37.157/reprografiaapi/seguranca/logar",
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/x-www-form-urlencoded",
-        //         "Authorization": "Basic Og==",
-        //         "Cache-Control": "no-cache",
-        //         "Postman-Token": "9c49d909-cb08-4623-ba36-d97e322d4652"
-        //     },
-        //     "data": {
-        //         "client_id": "exemploaplicativocliente",
-        //         "client_secret": "9834ba657bb2c60b5bb53de6f4201905",
-        //         "grant_type": "password",
-        //         "username": "suporte",
-        //         "password": "123456"
-        //     }
-        // }
-           
-        // $http(req).then(function(response){
-        //     console.log("Sucesso " + response);
-        // }, function(response){
-        //     console.log(response);
-        // });
 	}
 
 })

@@ -32,7 +32,20 @@ function verificaLogin(){
 
   if(token=="" || !token || token=="undefinec"){
     window.location.href = './login.html';
+    console.log('logout');
   }
+  console.log('ok');
+}
+
+function checarPermissoes(tipo) {
+  console.log("checou");
+  var permitido;
+  var tipoUsuario = $window.localStorage.getItem("tipoUsuario");
+  if (tipo === tipoUsuario) {
+    permitido = true;
+  }
+
+  return permitido;
 }
 
 function logout(){
@@ -42,10 +55,10 @@ function logout(){
 
 app.controller("appController", function($scope){
   verificaLogin();
-  $scope.verificarPermissoes = function(tipo) {
+  $scope.checarPermissoes = function(tipo) {
     console.log("checou");
     var permitido;
-    var tipoUsuario = $window.localStorage.getItem("tipoUsuario");
+    var tipoUsuario = localStorage.getItem("tipoUsuario");
     if (tipo === tipoUsuario) {
       permitido = true;
     }
