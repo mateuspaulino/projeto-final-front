@@ -72,22 +72,24 @@ app.controller("appController", function($scope, $http){
   }
 
   carregarUsuario= function (){
-		// token = localStorage.getItem("userToken");
-		// //$http.defaults.headers.common.Authorization = 'Bearer '+ token;
+		token = localStorage.getItem("userToken");
+		//$http.defaults.headers.common.Authorization = 'Bearer '+ token;
 		
-		// $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/seguranca/usuario/logado'})
-		// .then(function (response){
-		// 	// $scope.clientes=response.data;
-		// 	console.log(response);
-		// } , function (response){
-		// 	console.log(response);
-		// 	// console.log(response.status);
+		$http({method:'GET', url:'http://18.228.37.157/reprografiaapi/seguranca/usuario/logado'})
+		.then(function (response){
+      // $scope.clientes=response.data;
+      console.log('funcionou');
+			console.log(response.data);
+		} , function (response){
+      console.log('erro');
+			console.log(response);
+			// console.log(response.status);
 			
-    // });
+    });
 
     // var req = {
-    //   "async": true,
-    //   "crossDomain": true,
+    //   // "async": true,
+    //   // "crossDomain": true,
     //   "url": "http://18.228.37.157/reprografiaapi/seguranca/usuario/logado",
     //   "method": "GET",
     //   "headers": {
@@ -126,9 +128,9 @@ app.config(function($routeProvider) {
   // });   
 });
 
-// app.config(function($httpProvider){
-//   $httpProvider.interceptors.push('tokenInterceptor');
-// });
+app.config (function($httpProvider){
+	$httpProvider.interceptors.push("tokenInterceptor");
+});
 
 //  // configure html5 to get links working on jsfiddle
 //  $locationProvider.html5Mode(true);

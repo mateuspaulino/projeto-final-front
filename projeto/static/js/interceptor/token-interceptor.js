@@ -1,33 +1,24 @@
-app.factory('tokenInterceptor', function($q, $location){
-    // return {
-    //     'request': function(config){
-    //         config.header["Authorization"] = localStorage.getItem('userToken');
-    //         return config;
-    //     },
-    //     'responseError': function(rejection){
-    //         if(rejection.status==401 || rejection.status==500){
-    //             $location.path('/login');
-    //         }
-    //         return $q.reject(rejection);
-    //     }
-    // };
-    return {
+app.factory("tokenInterceptor", function($q, $location){
+	
+	return {
 		
 		'request': function(config){
 			
-            config.headers.Authorization = 'Bearer ' + localStorage.getItem("userToken");  
+			config.headers.Authorization = 'Bearer ' + localStorage.getItem("userToken");  
 		
 			return config;
 		},
 		
-		'responseError': function (rejection){
+		  'responseError': function (rejection){
 	    	
-	    	if(rejection.status==401 || rejection.status==500){
-	    		$location.path("/login");
+	    	if(rejection.status==401 || rejection.status==501){
+                // $location.path("/login");
+                window.location.href = './login.html';
 	    	}
 	    	return response;
 	    }
 	
 	
 	};
+	
 });
