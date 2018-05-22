@@ -1,4 +1,4 @@
-<div id="page-content" ng-controller="usuarioController">
+<div id="page-content">
     <!-- Forms General Header -->
     <div class="content-header">
         <div class="header-section">
@@ -27,29 +27,29 @@
                 <!-- END Form Elements Title -->
 
                 <!-- Basic Form Elements Content -->
-                <form action="page_forms_general.html" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" onsubmit="return false;">
+                <form class="form-horizontal form-bordered" ng-submit="cadastrar()">
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="nome">Nome</label>
                         <div class="col-md-9">
-                            <input type="text" id="nome" name="nome" class="form-control" placeholder="Emanoel">
+                            <input type="text" required id="nome" name="nome" class="form-control" placeholder="Emanoel" ng-model="usuario.nome">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="email">Email</label>
                         <div class="col-md-9">
-                            <input type="email" id="email" name="email" class="form-control" placeholder="emanoel@gmail.com">
+                            <input type="email" required id="email" name="email" class="form-control" placeholder="emanoel@gmail.com" ng-model="usuario.email">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="login">Login</label>
                         <div class="col-md-9">
-                            <input type="text" id="login" name="login" class="form-control" placeholder="emanoelsantos">
+                            <input type="text" required id="login" name="login" class="form-control" placeholder="emanoelsantos" ng-model="usuario.login">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="senha">Senha</label>
                         <div class="col-md-9">
-                            <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha">
+                            <input type="password" required id="senha" name="senha" class="form-control" placeholder="Senha" ng-model="usuario.senha">
                         </div>
                     </div>
 
@@ -58,30 +58,26 @@
                         <div class="col-md-9">
                             <div class="radio">
                                 <label for="ativo1">
-                                    <input type="radio" id="ativo1" name="ativo" value="sim"> Sim
+                                    <input type="radio" required id="ativo1" name="ativo" ng-model="usuario.ativo" value="true" checked="checked"> Sim
                                 </label>
                             </div>
                             <div class="radio">
                                 <label for="ativo2">
-                                    <input type="radio" id="ativo2" name="ativo" value="nao"> Não
+                                    <input type="radio" required id="ativo2" name="ativo" ng-model="usuario.ativo" value="false"> Não
                                 </label>
                             </div>
                         </div>
                     </div>
 
-                    <div class="form-group">
+                     <div class="form-group">
                         <label class="col-md-3 control-label" for="perfil">Perfil</label>
                         <div class="col-md-9">
-                            <select id="perfil" name="perfil" class="form-control" size="1">
-                                <option value="1">Gerente</option>
-                                <option value="2">Diretor</option>
-                                <option value="3">Professor</option>
-                                <option value="4">Coordenador</option>
-                                <option value="5">Reprografia</option>
-                                <option value="6">TI</option>
+                            <select id="perfil" required name="perfil" class="form-control" size="1" ng-model="usuario.perfil.id">
+                                    <option value="">---Selecione---</option>    
+                                    <option ng-repeat="opt in tipos" value="{{opt.id}}">{{opt.nome}}</option>
                             </select>
                         </div>
-                    </div>
+                    </div> 
                    
                     <div class="form-group form-actions">
                         <div class="col-md-9 col-md-offset-3">
