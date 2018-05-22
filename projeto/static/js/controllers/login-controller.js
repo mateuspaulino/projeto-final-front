@@ -9,26 +9,8 @@ app.controller("loginController", function($scope, $location, $http){
 	
 	$scope.autenticar= function(){
 
+      console.log("Chamou Autenticar " + $scope.usuario.nome + " " + $scope.usuario.senha )
 
-        // $httpProvider.defaults.headers.post = { 'Content-Type' : 'application/x-www-form-urlencoded' };
-        //     $httpProvider.defaults.headers.post = { 'Authorization' : 'Basic Og==' };
-
-        //     var dataObj = {
-        //         "client_id": "exemploaplicativocliente",
-        //         "client_secret": "9834ba657bb2c60b5bb53de6f4201905",
-        //         "grant_type": "password",
-        //         "username": "suporte",
-        //         "password": "123456"
-        //     };
-
-        //     $http.post("http://18.228.37.157/reprografiaapi/seguranca/logar", dataObj).then(function(response){
-        //         console.log("Sucesso " + response);
-        //         // $scope.token = response.data.token;
-        //         // localStorage.setItem("userToken", response.data.token);
-                
-        //     } , function(response){
-        //         console.log("Falha " + response);
-        //     });
 
         var settings = {
             "async": true,
@@ -53,39 +35,12 @@ app.controller("loginController", function($scope, $location, $http){
           $.ajax(settings).done(function (response) {
             console.log(response);
           });
-
-
-
-
-
-        // localStorage.setItem("userToken", "aquivaiotoken");
-		// $http.post("/autenticar", $scope.usuario).then(function(response){
-		// 	console.log("Sucesso " + response);
-		// 	$scope.token = response.data.token;
-		// 	localStorage.setItem("userToken", response.data.token);
-			
-		// } , function(response){
-		// 	console.log("Falha " + response);
-        // });
-        // window.location.href = './';
-        // console.log("Chamou Autenticar " + $scope.usuario.nome + " " + $scope.usuario.senha )
-        
-        // var req = {
-        //     method: 'POST',
-        //     url: 'http://18.228.37.157/reprografiaapi/seguranca/logar',
-        //     headers: {
-        //         'Content-Type':'application/x-www-form-urlencoded'
-        //     },
-        //     data: {
-        //         'client_id':'exemploaplicativocliente',
-        //         'client_secret':'9834ba657bb2c60b5bb53de6f4201905',
-        //         'grant_type':'password',
-        //         'username':'suporte',
-        //         'password':'123456',
-        //     }
-        //    }
-
-            
+          
+          // testes storade
+          localStorage.setItem("userToken", "aquivaiotoken");
+          localStorage.setItem("tipoUsuario", "suporte");
+          // window.location.href = './';
+          // end testes
 
         //    var req = {
         //     "async": true,

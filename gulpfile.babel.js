@@ -41,6 +41,20 @@ gulp.task('watch',() => {
 }).on('change', browserSync.reload);
 
 // Live browser
+gulp.task('proxy',() => {
+	browserSync.create().init({
+		proxy: {
+			target: "http://localhost:8000",
+			proxyReq: [
+				function(proxyReq) {
+					proxyReq.setHeader('Access-Control-Allow-Origin', '*');
+				}
+			]
+		}
+	});
+});
+
+// Live browser
 gulp.task('browserLive',() => {
 	browserSync.init({
 		port: 8000,

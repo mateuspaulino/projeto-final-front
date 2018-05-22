@@ -125,7 +125,7 @@
                                     <span class="sidebar-header-options clearfix"><a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings"><i class="gi gi-settings"></i></a></span>
                                     <span class="sidebar-header-title">FERRAMENTAS</span>
                                 </li>
-                                <li>
+                                <li ng-show="checarPermissoes('suporte')">
                                     <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator"></i><i class="gi gi-certificate sidebar-nav-icon"></i>Usuários</a>
                                     <ul>
                                         <li>
@@ -163,7 +163,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li>
+                                <li ng-show="checarPermissoes('professor')">
                                     <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator"></i><i class="gi gi-notes_2 sidebar-nav-icon"></i>Requisições</a>
                                     <ul>
                                         <li>
@@ -195,7 +195,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li>
+                                <li ng-show="checarPermissoes('professor')">
                                     <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator"></i><i class="gi gi-table sidebar-nav-icon"></i>Aprovações</a>
                                     <ul>
                                         <li>

@@ -42,6 +42,16 @@ function logout(){
 
 app.controller("appController", function($scope){
   verificaLogin();
+  $scope.verificarPermissoes = function(tipo) {
+    console.log("checou");
+    var permitido;
+    var tipoUsuario = $window.localStorage.getItem("tipoUsuario");
+    if (tipo === tipoUsuario) {
+      permitido = true;
+    }
+  
+    return permitido;
+  }
 })
 
 app.config(function($routeProvider) {
