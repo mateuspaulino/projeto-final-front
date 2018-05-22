@@ -32,9 +32,9 @@ function verificaLogin(){
 
   if(token=="" || !token || token=="undefinec"){
     window.location.href = './login.html';
-    console.log('logout');
+    // console.log('logout');
   }
-  console.log('ok');
+  // console.log('ok');
 }
 
 function checarPermissoes(tipo) {
@@ -53,10 +53,15 @@ function logout(){
   window.location.href = './login.html';
 }
 
-app.controller("appController", function($scope){
+
+
+app.controller("appController", function($scope, $http){
   verificaLogin();
+
+  $scope.nome = localStorage.getItem("nomeUsuario");
+
   $scope.checarPermissoes = function(tipo) {
-    console.log("checou");
+    // console.log("checou");
     var permitido;
     var tipoUsuario = localStorage.getItem("tipoUsuario");
     if (tipo === tipoUsuario) {
@@ -65,6 +70,42 @@ app.controller("appController", function($scope){
   
     return permitido;
   }
+
+  carregarUsuario= function (){
+		// token = localStorage.getItem("userToken");
+		// //$http.defaults.headers.common.Authorization = 'Bearer '+ token;
+		
+		// $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/seguranca/usuario/logado'})
+		// .then(function (response){
+		// 	// $scope.clientes=response.data;
+		// 	console.log(response);
+		// } , function (response){
+		// 	console.log(response);
+		// 	// console.log(response.status);
+			
+    // });
+
+    // var req = {
+    //   "async": true,
+    //   "crossDomain": true,
+    //   "url": "http://18.228.37.157/reprografiaapi/seguranca/usuario/logado",
+    //   "method": "GET",
+    //   "headers": {
+    //     Authorization: 'Bearer ' + localStorage.getItem("userToken"),
+    //   }
+    // }
+    // console.log('Bearer ' + localStorage.getItem("userToken"));
+
+    // $.ajax(req).done(function (response) {
+    //   console.log(response);
+    // }).fail(function(response) {
+    //   console.log(response);
+    // })
+    
+  };
+  
+  carregarUsuario();
+  
 })
 
 app.config(function($routeProvider) {
