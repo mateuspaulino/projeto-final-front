@@ -12,12 +12,14 @@ app.controller("usuarioController", function($scope, $http){
     $scope.cadastrar= function(){
         
         console.log($scope.usuario);
+        console.log(JSON.stringify($scope.usuario));
         if($scope.usuario.ativo==="true"){
             $scope.usuario.ativo = true;
         }else{
             $scope.usuario.ativo = false;
         }
         $scope.usuario.tipoPessoa = "normal";
+        $scope.usuario.perfil.id = parseInt( $scope.usuario.perfil.id);
         $http({
             method:'POST', 
             url:'http://18.228.37.157/reprografiaapi/suporte/pessoa/cadastrar',
