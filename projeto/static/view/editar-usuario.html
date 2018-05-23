@@ -8,8 +8,8 @@
         </div>
     </div>
     <ul class="breadcrumb breadcrumb-top">
-        <li>Tables</li>
-        <li><a href="">Datatables</a></li>
+        <li>Editar</li>
+        <li><a href="">Usuários</a></li>
     </ul>
     <!-- END Datatables Header -->
 
@@ -41,7 +41,7 @@
                         <td><span class="label" ng-class="usuario.ativo ? 'label-success' : 'label-info'" >{{usuario.ativo && 'ativo' || 'inativo'}}</span></td>
                         <td class="text-center">
                             <div class="btn-group">
-                                <a href="javascript:void(0)" data-toggle="tooltip" title="Editar" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
+                                <a ng-href="#!/editar-usuario/{{usuario.id}}" data-toggle="tooltip" title="Editar" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
                                 <a ng-click="usuario.ativo ? desativar(usuario.id) : ativar(usuario.id)" data-toggle="tooltip" title="Trocar status" class="btn btn-xs" ng-class="usuario.ativo ? 'btn-danger' : 'btn-success'"><i class="fa" ng-class="usuario.ativo ? 'fa-times' : 'fa-check'"></i></a>
                             </div>
                         </td>
