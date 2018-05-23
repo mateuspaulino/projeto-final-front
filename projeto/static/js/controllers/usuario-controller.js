@@ -26,9 +26,10 @@ app.controller("usuarioController", function($scope, $http){
             data: $scope.usuario
         })
         .then(function (response){
-            console.log(response);
-        } , function (response){
-            console.log(response);
+            alert("Usuário cadastrado com sucesso");
+            $scope.usuario = {};
+        } , function(){
+            alert("Login já existente ou sessão expirada");
         });
               
     }

@@ -4,6 +4,7 @@ app.controller("loginController", function($scope, $location, $http){
   localStorage.clear();
 
   $scope.usuario={};
+  $scope.usuario.perfil={};
 	
 	$scope.autenticar= function(){
 

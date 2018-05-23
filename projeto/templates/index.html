@@ -35,6 +35,7 @@
         <script src="../static/js/App.js"></script>
         <!-- <script src="../static/js/controllers/app-controller.js"></script> -->
         <script src="../static/js/controllers/usuario-controller.js"></script>
+        <script src="../static/js/controllers/editar-usuario-controller.js"></script>
         <script src="../static/js/interceptor/token-interceptor.js"></script>
 
     </head>
@@ -102,6 +103,20 @@
                                         </li>
                                         <li ng-show="checarPermissoes('Gerente')">
                                             <a ng-href="#!/cadastrar-centro-de-custo">Centro de Custo</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li ng-show="checarPermissoes('TI, Gerente')">
+                                    <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator"></i><i class="gi gi-edit sidebar-nav-icon"></i>Editar</a>
+                                    <ul>
+                                        <li ng-show="checarPermissoes('Gerente')">
+                                            <a ng-href="#!/editar-custo">Custo</a>
+                                        </li>
+                                        <li ng-show="checarPermissoes('TI')">
+                                            <a ng-href="#!/editar-usuario">Usuário</a>
+                                        </li>
+                                        <li ng-show="checarPermissoes('TI')">
+                                            <a ng-href="#!/editar-disciplina">Disciplina</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -206,7 +221,7 @@
                     <!-- END Header -->
                     
                     <!-- Page content -->
-                    <div id="page-content" ng-view="ng-view" style="height: calc(100vh - 84px);">
+                    <div id="page-content" ng-view="ng-view" style="min-height: calc(100vh - 84px);">
                         
                     </div>
                     <!-- END Page Content -->
@@ -312,5 +327,9 @@
         <!-- Load and execute javascript code used only in this page -->
         <script src="../static/js/pages/index.js"></script>
         <script>$(function(){ Index.init(); });</script>
+
+        <script type="text/javascript" src="../static/js/tabelas.js"></script>
+        <script>$(function(){ TablesDatatables.init(); });</script>
+
     </body>
 </html>
