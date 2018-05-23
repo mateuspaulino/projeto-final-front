@@ -58,7 +58,8 @@ app.controller("editarUsuarioEspecificoController", function($scope, $routeParam
             // redirecionar para a lista
             $location.path("/editar-usuario");
         } , function(){
-            alert("Erro na requisição");
+            alert("Sessão expirada");
+            logout();
         });
               
     }

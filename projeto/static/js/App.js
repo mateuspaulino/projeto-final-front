@@ -71,6 +71,10 @@ app.config(function($routeProvider) {
     templateUrl: '../static/view/editar-usuario-especifico.html',
     controller: 'editarUsuarioEspecificoController',
   })
+  .when('/cadastrar-disciplina', {
+    templateUrl: '../static/view/disciplina.html',
+    controller: 'disciplinaController',
+  })
   .when('/', {
     templateUrl: '../static/view/home.html',
     controller: '',

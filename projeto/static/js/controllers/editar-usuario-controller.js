@@ -4,17 +4,18 @@ app.controller("editarUsuarioController", function($scope, $http){
 
     $scope.usuarios=[];
 
-    carregarClientes= function (){		
+    carregarUsuarios= function (){		
         $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/suporte/pessoa/listar'})
         .then(function (response){
             $scope.usuarios=response.data;
             console.log(response.data);
             // TablesDatatables.init();
         } , function (response){
-            console.log(response);
+            alert("Sessão expirada");
+            logout();
         });
     };
-    carregarClientes();
+    carregarUsuarios();
 
     $scope.desativar= function(id){
         
@@ -25,7 +26,7 @@ app.controller("editarUsuarioController", function($scope, $http){
         })
         .then(function (response){
             alert("Pessoa desativada com sucesso");
-            carregarClientes();
+            carregarUsuarios();
         } , function(){
             alert("Sessão expirada");
             logout();
@@ -42,7 +43,7 @@ app.controller("editarUsuarioController", function($scope, $http){
         })
         .then(function (response){
             alert("Pessoa ativada com sucesso");
-            carregarClientes();
+            carregarUsuarios();
         } , function(){
             alert("Sessão expirada");
             logout();

@@ -41,7 +41,7 @@ app.controller("loginController", function($scope, $location, $http){
         },200)
       }
     }).fail(function(response) {
-      alert( "error" );
+      alert( "Sem conexão com o servidor" );
     })
        
     // $http(req).then(function(response){
