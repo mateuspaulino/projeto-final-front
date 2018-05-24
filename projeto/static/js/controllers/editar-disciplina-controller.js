@@ -3,13 +3,27 @@ app.controller("editarDisciplinaController", function($scope, $http){
     // TablesDatatables.init();
 
     $scope.disciplinas=[];
+    $scope.disciplinas.listaProfessores = {};
 
     carregarDisciplina= function (){		
         $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/suporte/disciplina/listar'})
         .then(function (response){
             $scope.disciplinas=response.data;
-            console.log(response.data);
-            // TablesDatatables.init();
+            // cria uma string com os professores da disciplina
+            $.each($scope.disciplinas,function(i,d){
+                var str = "";
+                $.each($scope.disciplinas[i].professores,function(i,d){
+                    str += d.nome;
+                    if(i >= 1){
+                        str += " / ";
+                    }
+                })
+                if(str===""){
+                    str = "Nenhum professor";
+                }
+                $scope.disciplinas[i].strProfessores = str;
+            })
+            
         } , function (response){
             alert("Sessão expirada");
             logout();
@@ -17,15 +31,16 @@ app.controller("editarDisciplinaController", function($scope, $http){
     };
     carregarDisciplina();
 
+
     $scope.desativar= function(id){
         
         $http({
             method:'GET', 
-            url:'http://18.228.37.157/reprografiaapi/suporte/pessoa/'+id+'/inativar',
+            url:'http://18.228.37.157/reprografiaapi/suporte/disciplina/'+id+'/inativar',
             // data: id
         })
         .then(function (response){
-            alert("Pessoa desativada com sucesso");
+            alert("Disciplina desativada com sucesso");
             carregarDisciplina();
         } , function(){
             alert("Sessão expirada");
@@ -38,11 +53,11 @@ app.controller("editarDisciplinaController", function($scope, $http){
         
         $http({
             method:'GET', 
-            url:'http://18.228.37.157/reprografiaapi/suporte/pessoa/'+id+'/ativar',
+            url:'http://18.228.37.157/reprografiaapi/suporte/disciplina/'+id+'/ativar',
             // data: id
         })
         .then(function (response){
-            alert("Pessoa ativada com sucesso");
+            alert("Disciplina ativada com sucesso");
             carregarDisciplina();
         } , function(){
             alert("Sessão expirada");

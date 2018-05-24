@@ -79,6 +79,10 @@ app.config(function($routeProvider) {
     templateUrl: '../static/view/editar-disciplina.html',
     controller: 'editarDisciplinaController',
   })
+  .when('/editar-disciplina/:disciplinaId', {
+    templateUrl: '../static/view/editar-disciplina-especifico.html',
+    controller: 'editarDisciplinaEspecificoController',
+  })
   .when('/', {
     templateUrl: '../static/view/home.html',
     controller: '',
