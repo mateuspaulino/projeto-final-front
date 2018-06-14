@@ -46,6 +46,10 @@
         <script src="../static/js/controllers/editar-disciplina-controller.js"></script>
         <script src="../static/js/controllers/editar-disciplina-especifico-controller.js"></script>
 
+        <!-- PROFESSOR DISCIPLINA -->
+        <script src="../static/js/controllers/professor-disciplina-controller.js"></script>
+        <script src="../static/js/controllers/editar-professor-disciplina-especifico-controller.js"></script>
+
         <!-- INTERCEPTADOR DE REQUISIÇÕES -->
         <script src="../static/js/interceptor/token-interceptor.js"></script>
 
@@ -128,6 +132,9 @@
                                         </li>
                                         <li ng-show="checarPermissoes('TI')">
                                             <a ng-href="#!/editar-disciplina">Disciplina</a>
+                                        </li>
+                                        <li ng-show="checarPermissoes('TI')">
+                                            <a ng-href="#!/professor-disciplina">Professor-Disciplina</a>
                                         </li>
                                     </ul>
                                 </li>
