@@ -1,0 +1,67 @@
+<div id="page-content">
+    <!-- Forms General Header -->
+    <div class="content-header">
+        <div class="header-section">
+            <h1>
+                <i class="gi gi-notes_2"></i>Editar Professor-Disciplina<br><small>Em caso de dúvidas, contate o coordenador</small>
+            </h1>
+        </div>
+    </div>
+    <ul class="breadcrumb breadcrumb-top">
+        <li>Usuário</li>
+        <li><a href="">Professor-Disciplina</a></li>
+    </ul>
+    <!-- END Forms General Header -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Basic Form Elements Block -->
+            <div class="block">
+                <!-- Basic Form Elements Title -->
+                <div class="block-title">
+                    <div class="block-options pull-right">
+                        <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-default toggle-bordered enable-tooltip" data-toggle="button" title="Toggles .form-bordered class">Sem bordas</a>
+                    </div>
+                    <h2><strong>Informações</strong> Básicas</h2>
+                </div>
+                <!-- END Form Elements Title -->
+
+                <!-- Basic Form Elements Content -->
+                <form class="form-horizontal form-bordered" ng-submit="alterar()">
+
+                        <div class="form-group">
+                            <div class="col-md-6">
+                            <label>Permissões</label>
+                            <select id="permissoes" class="form-control" multiple>
+                                <option>Clientes</option>
+                                <option>Boletos</option>
+                                <option>Usuários</option>
+                                <option>Configurações</option>
+                            </select>
+                            </div>
+                            <div class="col-md-6">
+                            <label>Minhas Permissões</label>
+                            <select id="minhasPermissoes" class="form-control" multiple>
+                            </select>
+                            </div>
+                            <div class="row"></div>
+                            <hr>
+                            <div class="col-md-12">
+                                <button type="button" id="associar" class="btn btn-primary">Associar</button>
+                                <button type="button" id="desassociar" class="btn btn-primary">Desassociar</button>
+                            </div>
+                   
+                    <div class="form-group form-actions">
+                        <div class="col-md-9 col-md-offset-3">
+                            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> Alterar</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- END Basic Form Elements Content -->
+            </div>
+            <!-- END Basic Form Elements Block -->
+        </div>
+
+    </div>
+
+</div>
