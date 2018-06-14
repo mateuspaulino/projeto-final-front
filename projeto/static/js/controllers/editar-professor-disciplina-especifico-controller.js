@@ -1,5 +1,6 @@
 app.controller("editarProfessorDisciplinaEspecificoController", function($scope, $routeParams, $http, $location){
     $scope.usuario = {};
+    $scope.disciplinasUsuario = {};
 
     var idUsuario = $routeParams.usuarioId;
 
@@ -7,6 +8,8 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
     var desassociar = $("#desassociar");
     var permissoes = $("#permissoes");
     var minhasPermissoes = $("#minhasPermissoes");
+
+    var disciplinasUsuario = {};
 
 
     associar.click(function() {
@@ -32,57 +35,95 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
                 return usuario.id == idUsuario;
             })
             $scope.usuario = filtro[0];
-            // console.log($scope.usuario);
+            disciplinasUsuario= $scope.usuario.disciplinas;
+            carregarDisciplina(disciplinasUsuario);
+            console.table(disciplinasUsuario);
         } , function (response){
-            alert("Sessão expirada");
-            logout();
+            // alert("Sessão expirada");
+            // logout();
         });
     };
     carregarClientes();
 
+    $scope.disciplinas=[];
+
+
+    carregarDisciplina = function (disciplinasUsuario){	
+        var disciplinas = [];	
+        $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/suporte/disciplina/listar'})
+        .then(function (response){
+            // itera todas disciplinas
+            console.log(response);
+            var achou = false;
+            $.each(response.data,function(i,disciplinaGeral){
+                console.log(disciplinaGeral);
+                //itera disciplinas do usuário pra ver se já foi associada, se foi não adiciona na lista
+                $.each(disciplinasUsuario,function(i,disciplinaUsuario){
+                    console.log(disciplinaGeral.id +" "+disciplinaUsuario.id )
+                    if(disciplinaGeral.id==disciplinaUsuario.id){
+                        achou=true;
+                    }else{
+                        achou=false;
+                    }
+                })
+                if(achou==false){
+                    disciplinas.push(disciplinaGeral);
+                    // achou = false;
+                }
+            })
+            console.table(disciplinas);
+            
+        } , function (response){
+            // alert("Sessão expirada");
+            // logout();
+        });
+    };
+    
+
+
     $scope.tipos = {};
     $scope.tipoSelecionado = {};
 
-    $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/suporte/perfil/listar'})
-    .then(function (response){
-        $scope.tipos = response.data;
-        // console.log(response.data);
-    } , function (response){
-        // console.log(response);
-    });
+    // $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/suporte/perfil/listar'})
+    // .then(function (response){
+    //     $scope.tipos = response.data;
+    //     // console.log(response.data);
+    // } , function (response){
+    //     // console.log(response);
+    // });
 
-    $scope.alterar= function(){
+    // $scope.alterar= function(){
         
-        if($scope.usuario.ativo==="true"){
-            $scope.usuario.ativo = true;
-        }else{
-            $scope.usuario.ativo = false;
-        }
-        $scope.usuario.tipoPessoa = "normal";
-        $scope.usuario.perfil.id = parseInt($scope.tipoSelecionado);
+    //     if($scope.usuario.ativo==="true"){
+    //         $scope.usuario.ativo = true;
+    //     }else{
+    //         $scope.usuario.ativo = false;
+    //     }
+    //     $scope.usuario.tipoPessoa = "normal";
+    //     $scope.usuario.perfil.id = parseInt($scope.tipoSelecionado);
 
-        delete $scope.usuario.perfil.nome;
-        delete $scope.usuario.perfil.descricao;
-        delete $scope.usuario.salvo;
-        delete $scope.usuario.naoSalvo;
-        console.table($scope.usuario);
+    //     delete $scope.usuario.perfil.nome;
+    //     delete $scope.usuario.perfil.descricao;
+    //     delete $scope.usuario.salvo;
+    //     delete $scope.usuario.naoSalvo;
+    //     console.table($scope.usuario);
 
-        $http({
-            method:'POST', 
-            url:'http://18.228.37.157/reprografiaapi/suporte/pessoa/alterar',
-            data: $scope.usuario
-        })
-        .then(function (response){
-            alert("Usuário alterado com sucesso");
-            // $scope.usuario = {};
-            // redirecionar para a lista
-            $location.path("/editar-usuario");
-        } , function(){
-            alert("Sessão expirada");
-            logout();
-        });
+    //     $http({
+    //         method:'POST', 
+    //         url:'http://18.228.37.157/reprografiaapi/suporte/pessoa/alterar',
+    //         data: $scope.usuario
+    //     })
+    //     .then(function (response){
+    //         alert("Usuário alterado com sucesso");
+    //         // $scope.usuario = {};
+    //         // redirecionar para a lista
+    //         $location.path("/editar-usuario");
+    //     } , function(){
+    //         alert("Sessão expirada");
+    //         logout();
+    //     });
               
-    }
+    // }
 
 
 })
