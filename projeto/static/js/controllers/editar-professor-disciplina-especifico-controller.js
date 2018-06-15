@@ -36,6 +36,29 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
                     // $scope.$apply(function() {
                         $scope.disciplinas.splice(index,1);
                     // });
+
+                    var objAssociacao = {
+                        disciplina: {
+                            id: parseInt(d.val())
+                        },
+                        professor: {
+                            id: idUsuario
+                        }
+                    };
+
+                    $http({
+                        method:'POST', 
+                        url:'http://18.228.37.157/reprografiaapi/suporte/professordisciplina/associar',
+                        data: objAssociacao
+                    })
+                    .then(function (response){
+                        alert("Alteração concluída com sucesso");
+                        // $scope.usuario = {};
+                        // redirecionar para a lista
+                    } , function(){
+                        alert("Sessão expirada");
+                        logout();
+                    });
                 });
             }
         })
@@ -63,6 +86,30 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
                     //remove do array de minhas disciplinas
                     var index = $scope.usuario.disciplinas.map(function(e) { return e.id; }).indexOf(parseInt(d.val()));
                     $scope.usuario.disciplinas.splice(index,1);
+
+                    var objAssociacao = {
+                        disciplina: {
+                            id: parseInt(d.val())
+                        },
+                        professor: {
+                            id: idUsuario
+                        }
+                    };
+
+                    $http({
+                        method:'POST', 
+                        url:'http://18.228.37.157/reprografiaapi/suporte/professordisciplina/desassociar',
+                        data: objAssociacao
+                    })
+                    .then(function (response){
+                        alert("Alteração concluída com sucesso");
+                        // $scope.usuario = {};
+                        // redirecionar para a lista
+                    } , function(){
+                        // alert("Sessão expirada");
+                        // logout();
+                    });
+
                 });
             }
         })
@@ -82,6 +129,16 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
             disciplinasUsuario= $scope.usuario.disciplinas;
             $scope.disciplinasUsuario = $scope.usuario.disciplinas;
             carregarDisciplina(disciplinasUsuario);
+            // console.table(disciplinasUsuario);
+        } , function (response){
+            // alert("Sessão expirada");
+            // logout();
+        });
+
+        $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/suporte/professordisciplina/listar'})
+        .then(function (response){
+            var disciplinasProfessores = response.data;
+            console.log(disciplinasProfessores);
             // console.table(disciplinasUsuario);
         } , function (response){
             // alert("Sessão expirada");
@@ -116,8 +173,6 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
                 achou = false;
             })
 
-            //monta caixas
-
             // console.log('disciplinas')
             // console.table($scope.disciplinas);
             
@@ -140,38 +195,44 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
     //     // console.log(response);
     // });
 
-    // $scope.alterar= function(){
+    $scope.alterar= function(){
         
-    //     if($scope.usuario.ativo==="true"){
-    //         $scope.usuario.ativo = true;
-    //     }else{
-    //         $scope.usuario.ativo = false;
-    //     }
-    //     $scope.usuario.tipoPessoa = "normal";
-    //     $scope.usuario.perfil.id = parseInt($scope.tipoSelecionado);
+        // delete $scope.usuario.perfil.nome;
+        // delete $scope.usuario.perfil.descricao;
+        // delete $scope.usuario.salvo;
+        // delete $scope.usuario.naoSalvo;
+        // console.table($scope.usuario);
 
-    //     delete $scope.usuario.perfil.nome;
-    //     delete $scope.usuario.perfil.descricao;
-    //     delete $scope.usuario.salvo;
-    //     delete $scope.usuario.naoSalvo;
-    //     console.table($scope.usuario);
+        //monta objeto disciplina-professor
+        // var objDisciplinasProfessorFinal = [];
+        // $.each($scope.usuario.disciplinas, function(i,d){
+        //     console.log(d);
+        //     objDisciplinasProfessorFinal.push({
+        //         "disciplina":{
+        //             id:d.id
+        //         },
+        //         "professor":{
+        //             id:parseInt(idUsuario)
+        //         }
+        //     })
+        // })
+        // console.log(JSON.stringify(objDisciplinasProfessorFinal));
 
-    //     $http({
-    //         method:'POST', 
-    //         url:'http://18.228.37.157/reprografiaapi/suporte/pessoa/alterar',
-    //         data: $scope.usuario
-    //     })
-    //     .then(function (response){
-    //         alert("Usuário alterado com sucesso");
-    //         // $scope.usuario = {};
-    //         // redirecionar para a lista
-    //         $location.path("/editar-usuario");
-    //     } , function(){
-    //         alert("Sessão expirada");
-    //         logout();
-    //     });
+        // $http({
+        //     method:'POST', 
+        //     url:'http://18.228.37.157/reprografiaapi/suporte/professordisciplina/associar',
+        //     data: objDisciplinasProfessorFinal
+        // })
+        // .then(function (response){
+        //     alert("Alteração concluída com sucesso");
+        //     // $scope.usuario = {};
+        //     // redirecionar para a lista
+        // } , function(){
+        //     alert("Sessão expirada");
+        //     logout();
+        // });
               
-    // }
+    }
 
 
 })
