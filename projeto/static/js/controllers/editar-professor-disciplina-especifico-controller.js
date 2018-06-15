@@ -6,25 +6,28 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
 
     var associar = $("#associar");
     var desassociar = $("#desassociar");
-    var permissoes = $("#permissoes");
-    var minhasPermissoes = $("#minhasPermissoes");
+    var disciplinasDisponiveis = $("#disciplinasDisponiveis");
+    var minhasDisciplinas = $("#minhasDisciplinas");
 
     var disciplinasUsuario = {};
 
 
     associar.click(function() {
-        var selecionado = permissoes.find('option:selected');
-        if(selecionado.text()!==""){
-            minhasPermissoes.append('<option>' + selecionado.text() + '</option>');
-        }
-        selecionado.remove();
+        // var selecionado = disciplinasDisponiveis.find('option:selected');
+        // if(selecionado.text()!==""){
+        //     minhasDisciplinas.append('<option>' + selecionado.text() + '</option>');
+        // }
+        // selecionado.remove();
     });
 
     desassociar.click(function() {
-        var selecionado = minhasPermissoes.find('option:selected');
-        permissoes.append('<option>' + selecionado.text() + '</option>');
-        selecionado.remove();
+        // var selecionado = minhasDisciplinas.find('option:selected');
+        // disciplinasDisponiveis.append('<option>' + selecionado.text() + '</option>');
+        // selecionado.remove();
     });
+
+    $scope.disciplinasUsuario=[];
+    
 
     carregarClientes= function (){		
         $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/suporte/pessoa/listar'})
@@ -36,8 +39,9 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
             })
             $scope.usuario = filtro[0];
             disciplinasUsuario= $scope.usuario.disciplinas;
+            $scope.disciplinasUsuario = $scope.usuario.disciplinas;
             carregarDisciplina(disciplinasUsuario);
-            console.table(disciplinasUsuario);
+            // console.table(disciplinasUsuario);
         } , function (response){
             // alert("Sessão expirada");
             // logout();
@@ -48,30 +52,33 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
     $scope.disciplinas=[];
 
 
+
     carregarDisciplina = function (disciplinasUsuario){	
         var disciplinas = [];	
         $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/suporte/disciplina/listar'})
         .then(function (response){
             // itera todas disciplinas
-            console.log(response);
+            // console.log(response);
             var achou = false;
             $.each(response.data,function(i,disciplinaGeral){
-                console.log(disciplinaGeral);
+                // console.log(disciplinaGeral);
                 //itera disciplinas do usuário pra ver se já foi associada, se foi não adiciona na lista
                 $.each(disciplinasUsuario,function(i,disciplinaUsuario){
-                    console.log(disciplinaGeral.id +" "+disciplinaUsuario.id )
+                    // console.log(disciplinaGeral.id +" "+disciplinaUsuario.id )
                     if(disciplinaGeral.id==disciplinaUsuario.id){
                         achou=true;
-                    }else{
-                        achou=false;
                     }
                 })
                 if(achou==false){
-                    disciplinas.push(disciplinaGeral);
-                    // achou = false;
+                    $scope.disciplinas.push(disciplinaGeral);
                 }
+                achou = false;
             })
-            console.table(disciplinas);
+
+            //monta caixas
+
+            // console.log('disciplinas')
+            // console.table($scope.disciplinas);
             
         } , function (response){
             // alert("Sessão expirada");

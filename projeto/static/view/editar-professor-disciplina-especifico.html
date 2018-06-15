@@ -31,17 +31,19 @@
 
                         <div class="form-group">
                             <div class="col-md-6">
-                            <label>Permissões</label>
-                            <select id="permissoes" class="form-control" multiple>
-                                <option>Clientes</option>
+                            <label>Disciplinas</label>
+                            <select id="disciplinasDisponiveis" class="form-control" multiple>
+                                <!-- <option>Clientes</option>
                                 <option>Boletos</option>
                                 <option>Usuários</option>
-                                <option>Configurações</option>
+                                <option>Configurações</option> -->
+                                <option ng-repeat="disciplina in disciplinas" value="{{disciplina.id}}">{{disciplina.descricao}}</option>
                             </select>
                             </div>
                             <div class="col-md-6">
-                            <label>Minhas Permissões</label>
-                            <select id="minhasPermissoes" class="form-control" multiple>
+                            <label>Minhas disciplinas</label>
+                            <select id="minhasDisciplinas" class="form-control" multiple>
+                                <option ng-repeat="disciplina in usuario.disciplinas" value="{{disciplina.id}}">{{disciplina.descricao}}</option>
                             </select>
                             </div>
                             <div class="row"></div>
