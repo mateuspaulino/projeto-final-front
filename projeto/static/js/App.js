@@ -91,6 +91,10 @@ app.config(function($routeProvider) {
     templateUrl: '../static/view/editar-professor-disciplina-especifico.html',
     controller: 'editarProfessorDisciplinaEspecificoController',
   })
+  .when('/cadastrar-centro-de-custo', {
+    templateUrl: '../static/view/centro-custo.html',
+    controller: 'centroCustoController',
+  })
   .when('/', {
     templateUrl: '../static/view/home.html',
     controller: '',

@@ -12,7 +12,7 @@ app.factory("tokenInterceptor", function($q, $location){
 		  'responseError': function (rejection){
 	    	
 	    	if(rejection.status==401 || rejection.status==501 || rejection.codigo==401 || rejection.codigo==501){
-                // window.location.href = './login.html';
+                window.location.href = './login.html';
 	    	}
 	    	return response;
 	    }
