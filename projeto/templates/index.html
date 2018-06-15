@@ -52,6 +52,8 @@
 
         <!-- CENTRO DE CUSTO -->
         <script src="../static/js/controllers/centro-custo-controller.js"></script>
+        <script src="../static/js/controllers/editar-centro-custo-controller.js"></script>
+        <script src="../static/js/controllers/editar-centro-custo-especifico-controller.js"></script>
 
         <!-- INTERCEPTADOR DE REQUISIÇÕES -->
         <script src="../static/js/interceptor/token-interceptor.js"></script>
@@ -128,7 +130,7 @@
                                     <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator"></i><i class="gi gi-edit sidebar-nav-icon"></i>Editar</a>
                                     <ul>
                                         <li ng-show="checarPermissoes('Gerente')">
-                                            <a ng-href="#!/editar-custo">Custo</a>
+                                            <a ng-href="#!/editar-centro-custo">Custo</a>
                                         </li>
                                         <li ng-show="checarPermissoes('TI')">
                                             <a ng-href="#!/editar-usuario">Usuário</a>

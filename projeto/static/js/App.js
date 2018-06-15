@@ -95,6 +95,14 @@ app.config(function($routeProvider) {
     templateUrl: '../static/view/centro-custo.html',
     controller: 'centroCustoController',
   })
+  .when('/editar-centro-custo', {
+    templateUrl: '../static/view/editar-centro-custo.html',
+    controller: 'editarCentroCustoController',
+  })
+  .when('/editar-centro-custo/:centroId', {
+    templateUrl: '../static/view/editar-centro-custo-especifico.html',
+    controller: 'editarCentroCustoEspecificoController',
+  })
   .when('/', {
     templateUrl: '../static/view/home.html',
     controller: '',

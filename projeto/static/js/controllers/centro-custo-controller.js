@@ -2,12 +2,12 @@ app.controller("centroCustoController", function($scope, $http){
 
     // Initialize Datepicker
     $('.input-datepicker, .input-daterange').datepicker({
-        weekStart: 1,
+        // weekStart: 1,
         format: 'dd/mm/yyyy',
         locale: 'pt-br'
     });
     
-    $scope.disciplina = {};
+    $scope.custo = {};
 
     carregarCusto= function (){		
         $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/gerente/centrodecusto/listar'})
@@ -20,29 +20,29 @@ app.controller("centroCustoController", function($scope, $http){
     carregarCusto();
 
     $scope.cadastrar= function(){
-        // vou usar o que já tme no banco e depois faço o cadastro
-
-        // console.log($scope.disciplina);
-        // console.log(JSON.stringify($scope.disciplina));
-        // if($scope.disciplina.ativo==="true"){
-        //     $scope.disciplina.ativo = true;
+        $scope.custo.dataInicio = $("#dataInicio").val();
+        $scope.custo.dataFim = $("#dataFim").val();
+        console.log($scope.custo);
+        console.log(JSON.stringify($scope.custo));
+        // if($scope.custo.ativo==="true"){
+        //     $scope.custo.ativo = true;
         // }else{
-        //     $scope.disciplina.ativo = false;
+        //     $scope.custo.ativo = false;
         // }
-        // // $scope.disciplina.tipoPessoa = "normal";
-        // // $scope.disciplina.perfil.id = parseInt( $scope.disciplina.perfil.id);
-        // $http({
-        //     method:'POST', 
-        //     url:'http://18.228.37.157/reprografiaapi/gerente/centrodecusto/listar',
-        //     data: $scope.disciplina
-        // })
-        // .then(function (response){
-        //     alert("Disciplina cadastrada com sucesso");
-        //     $scope.disciplina = {};
-        //     carregarDisciplinas();
-        // } , function(){
-        //     alert("Disciplina já existente ou sessão expirada");
-        // });
+        // $scope.custo.tipoPessoa = "normal";
+        // $scope.custo.perfil.id = parseInt( $scope.custo.perfil.id);
+        $http({
+            method:'POST', 
+            url:'http://18.228.37.157/reprografiaapi/gerente/centrodecusto/cadastrar',
+            data: $scope.custo
+        })
+        .then(function (response){
+            alert("custo cadastrado com sucesso");
+            $scope.custo = {};
+            carregarCusto();
+        } , function(){
+            alert("Periodo já existente ou sessão expirada");
+        });
               
     }
 

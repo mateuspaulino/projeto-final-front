@@ -1,0 +1,51 @@
+<div id="page-content">
+    <!-- Datatables Header -->
+    <div class="content-header">
+        <div class="header-section">
+            <h1>
+                <i class="gi gi-notes_2"></i>Lista de centros de custo<br><small>Em caso de dúvidas, contate o coordenador</small>
+            </h1>
+        </div>
+    </div>
+    <ul class="breadcrumb breadcrumb-top">
+        <li>Editar</li>
+        <li><a href="">Centro de Custo</a></li>
+    </ul>
+    <!-- END Datatables Header -->
+
+    <!-- Datatables Content -->
+    <div class="block full">
+        <div class="block-title">
+            <h2><strong>Lista</strong> geral</h2>
+        </div>
+        <p>Abaixo a lista de centros de custo cadastrados</p>
+
+        <div class="table-responsive">
+            <table id="lista-usuarios" class="table table-vcenter table-condensed table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">ID</th>
+                        <th>Cota</th>
+                        <th>Data início</th>
+                        <th>Data Fim</th>
+                        <th class="text-center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="centro in centros">
+                        <td class="text-center">{{centro.id}}</td>
+                        <td>{{centro.cota}}</td>
+                        <td>{{centro.dataInicio}}</td>
+                        <td>{{centro.dataFim}}</td>
+                        <td class="text-center">
+                            <div class="btn-group">
+                                <a ng-href="#!/editar-centro-custo/{{centro.id}}" data-toggle="tooltip" title="Editar" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- END Datatables Content -->
+</div>
