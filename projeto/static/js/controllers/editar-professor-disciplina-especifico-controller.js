@@ -22,6 +22,7 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
             if(d.text()!==""){
                 // $scope.usuario.disciplina
                 $scope.$apply(function() {
+                    
                     $scope.usuario.disciplinas.push({
                         ativo: d.data('ativo'),
                         descricao: d.data('descricao'),
@@ -42,9 +43,11 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
                             id: parseInt(d.val())
                         },
                         professor: {
-                            id: idUsuario
+                            id: parseInt(idUsuario)
                         }
                     };
+
+                    console.log(objAssociacao);
 
                     $http({
                         method:'POST', 
@@ -56,8 +59,8 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
                         // $scope.usuario = {};
                         // redirecionar para a lista
                     } , function(){
-                        alert("Sessão expirada");
-                        logout();
+                        // alert("Sessão expirada");
+                        // logout();
                     });
                 });
             }
@@ -98,7 +101,7 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
 
                     $http({
                         method:'POST', 
-                        url:'http://18.228.37.157/reprografiaapi/suporte/professordisciplina/desassociar',
+                        url:'http://18.228.37.157/reprografiaapi/suporte/professordisciplina/remover',
                         data: objAssociacao
                     })
                     .then(function (response){
@@ -126,10 +129,14 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
                 return usuario.id == idUsuario;
             })
             $scope.usuario = filtro[0];
+            if(!$scope.usuario.disciplinas){
+                $scope.usuario.disciplinas = [];
+            }
             disciplinasUsuario= $scope.usuario.disciplinas;
             $scope.disciplinasUsuario = $scope.usuario.disciplinas;
+            console.log(disciplinasUsuario);
             carregarDisciplina(disciplinasUsuario);
-            // console.table(disciplinasUsuario);
+            console.log(disciplinasUsuario);
         } , function (response){
             // alert("Sessão expirada");
             // logout();
@@ -155,23 +162,30 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
         var disciplinas = [];	
         $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/suporte/disciplina/listar'})
         .then(function (response){
-            // itera todas disciplinas
-            // console.log(response);
-            var achou = false;
-            $.each(response.data,function(i,disciplinaGeral){
-                // console.log(disciplinaGeral);
-                //itera disciplinas do usuário pra ver se já foi associada, se foi não adiciona na lista
-                $.each(disciplinasUsuario,function(i,disciplinaUsuario){
-                    // console.log(disciplinaGeral.id +" "+disciplinaUsuario.id )
-                    if(disciplinaGeral.id==disciplinaUsuario.id){
-                        achou=true;
+            //se tiver disicplinas
+            if(disciplinasUsuario) {
+                // itera todas disciplinas
+                // console.log(response);
+                var achou = false;
+                $.each(response.data,function(i,disciplinaGeral){
+                    // console.log(disciplinaGeral);
+                    //itera disciplinas do usuário pra ver se já foi associada, se foi não adiciona na lista
+                    $.each(disciplinasUsuario,function(i,disciplinaUsuario){
+                        // console.log(disciplinaGeral.id +" "+disciplinaUsuario.id )
+                        if(disciplinaGeral.id==disciplinaUsuario.id){
+                            achou=true;
+                        }
+                    })
+                    if(achou==false){
+                        $scope.disciplinas.push(disciplinaGeral);
                     }
+                    achou = false;
                 })
-                if(achou==false){
-                    $scope.disciplinas.push(disciplinaGeral);
-                }
-                achou = false;
-            })
+            }else{
+                //usuario nao tem nenhuma disciplina
+                //mostra todas
+                $scope.disciplinas = response.data;
+            }
 
             // console.log('disciplinas')
             // console.table($scope.disciplinas);
