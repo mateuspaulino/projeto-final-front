@@ -31,7 +31,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6">
-                            <label>Disciplinas</label>
+                            <label>Disciplinas disponíveis</label>
                             <select id="disciplinasDisponiveis" class="form-control" multiple>
                                 <!-- <option>Clientes</option>
                                 <option>Boletos</option>
@@ -41,7 +41,7 @@
                             </select>
                             </div>
                             <div class="col-md-6">
-                            <label>Minhas disciplinas</label>
+                            <label>Disciplinas associadas</label>
                             <select id="minhasDisciplinas" class="form-control" multiple >
                                 <option ng-repeat="disciplina in usuario.disciplinas" value="{{disciplina.id}}" data-ativo="{{disciplina.ativo}}" data-descricao="{{disciplina.descricao}}" data-segmento="{{disciplina.segmento}}"  data-serie="{{disciplina.serie}}">{{disciplina.descricao}}</option>
                             </select>
