@@ -13,22 +13,63 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
 
 
     associar.click(function() {
-        // var selecionado = disciplinasDisponiveis.find('option:selected');
-        // if(selecionado.text()!==""){
-        //     minhasDisciplinas.append('<option>' + selecionado.text() + '</option>');
-        // }
-        // selecionado.remove();
+        //adiciona selecionados
+        minhasDisciplinas.blur();
+        disciplinasDisponiveis.blur();
+        var selecionado = disciplinasDisponiveis.find('option:selected');
+        $.each(selecionado,function(i,d){
+            d = $(d);
+            if(d.text()!==""){
+                // $scope.usuario.disciplina
+                $scope.$apply(function() {
+                    $scope.usuario.disciplinas.push({
+                        ativo: d.data('ativo'),
+                        descricao: d.data('descricao'),
+                        id: parseInt(d.val()),
+                        segmento: d.data('segmento'),
+                        serie: d.data('serie')
+                    })
+
+                    //remove do array de disciplinas disponíveis
+                    // console.log($scope.disciplinas);
+                    var index = $scope.disciplinas.map(function(e) { return e.id; }).indexOf(parseInt(d.val()));
+                    // $scope.$apply(function() {
+                        $scope.disciplinas.splice(index,1);
+                    // });
+                });
+            }
+        })
+
     });
 
     desassociar.click(function() {
-        // var selecionado = minhasDisciplinas.find('option:selected');
-        // disciplinasDisponiveis.append('<option>' + selecionado.text() + '</option>');
-        // selecionado.remove();
+        minhasDisciplinas.blur();
+        disciplinasDisponiveis.blur();
+        //adiciona selecionados
+        var selecionado = minhasDisciplinas.find('option:selected');
+        $.each(selecionado,function(i,d){
+            console.log(d);
+            d = $(d);
+            if(d.text()!==""){
+                // $scope.usuario.disciplina
+                $scope.$apply(function() {
+                    $scope.disciplinas.push({
+                        ativo: d.data('ativo'),
+                        descricao: d.data('descricao'),
+                        id: parseInt(d.val()),
+                        segmento: d.data('segmento'),
+                        serie: d.data('serie')
+                    })
+                    //remove do array de minhas disciplinas
+                    var index = $scope.usuario.disciplinas.map(function(e) { return e.id; }).indexOf(parseInt(d.val()));
+                    $scope.usuario.disciplinas.splice(index,1);
+                });
+            }
+        })
     });
 
     $scope.disciplinasUsuario=[];
     
-
     carregarClientes= function (){		
         $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/suporte/pessoa/listar'})
         .then(function (response){
