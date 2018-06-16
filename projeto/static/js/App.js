@@ -48,13 +48,15 @@ app.controller("appController", function($scope, $http){
 		$http({method:'GET', url:'http://18.228.37.157/reprografiaapi/seguranca/usuario/logado'})
 		.then(function (response){
       // $scope.usuario=response.data;
-			console.log(response);
+      //salva o id do usuário no storage
+      localStorage.setItem("idUsuario", response.data.pessoa.id);
+			// console.log(response);
 		} , function (response){
 			console.log(response);
 			
     });
   };
-  // dadosUsuario();
+  dadosUsuario();
 })
 
 app.config(function($routeProvider) {
@@ -102,6 +104,18 @@ app.config(function($routeProvider) {
   .when('/editar-centro-custo/:centroId', {
     templateUrl: '../static/view/editar-centro-custo-especifico.html',
     controller: 'editarCentroCustoEspecificoController',
+  })
+  .when('/nova-requisicao', {
+    templateUrl: '../static/view/requisicao.html',
+    controller: 'requisicaoController',
+  })
+  .when('/editar-requisicao', {
+    templateUrl: '../static/view/requisicao.html',
+    controller: 'editarRequisicaoController',
+  })
+  .when('/editar-requisicao/:requisicaoId', {
+    templateUrl: '../static/view/editar-requisicao-especifico.html',
+    controller: 'editarRequisicaoEspecificoController',
   })
   .when('/', {
     templateUrl: '../static/view/home.html',

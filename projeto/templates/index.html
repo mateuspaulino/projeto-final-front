@@ -55,6 +55,11 @@
         <script src="../static/js/controllers/editar-centro-custo-controller.js"></script>
         <script src="../static/js/controllers/editar-centro-custo-especifico-controller.js"></script>
 
+        <!-- REQUISIÇÃO - PROFESSOR -->
+        <script src="../static/js/controllers/requisicao-controller.js"></script>
+        <script src="../static/js/controllers/editar-requisicao-controller.js"></script>
+        <script src="../static/js/controllers/editar-requisicao-especifico-controller.js"></script>
+
         <!-- INTERCEPTADOR DE REQUISIÇÕES -->
         <script src="../static/js/interceptor/token-interceptor.js"></script>
 
@@ -140,6 +145,20 @@
                                         </li>
                                         <li ng-show="checarPermissoes('TI')">
                                             <a ng-href="#!/professor-disciplina">Professor-Disciplina</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li ng-show="checarPermissoes('Professor, Reprografia, Coordenador')">
+                                    <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator"></i><i class="gi gi-notes_2 sidebar-nav-icon"></i>Requisições</a>
+                                    <ul>
+                                        <li ng-show="checarPermissoes('Professor')">
+                                            <a ng-href="#!/nova-requisicao">Nova Requisição</a>
+                                        </li>
+                                        <!-- <li ng-show="checarPermissoes('Professor')">
+                                            <a ng-href="#!/cancelar-requisicao">Cancelar Requisição</a>
+                                        </li> -->
+                                        <li ng-show="checarPermissoes('Professor')">
+                                            <a ng-href="#!/editar-requisicao">Editar Requisição</a>
                                         </li>
                                     </ul>
                                 </li>
