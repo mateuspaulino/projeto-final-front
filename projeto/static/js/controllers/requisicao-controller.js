@@ -81,24 +81,61 @@ app.controller("requisicaoController", function($scope, $http){
         console.log('arquivo');
         console.log(arquivo);
         var fd = new FormData();
-        fd.append('file', arquivo);
+        fd.append('arquivo-part', arquivo);
         // "professorDisciplina": {"id":1}
+
+        // fd.append('file',file);
+        // fd.append('meta-part',angular.toJson($scope.requisicao));
+        fd.append('meta-part',JSON.stringify($scope.requisicao));
+
+        console.log($scope.requisicao);
+        console.log(JSON.stringify($scope.requisicao));
 
         // $scope.usuario.tipoPessoa = "normal";
 
-        $http.post('http://18.228.37.157/reprografiaapi/professor/requisicao/cadastrar', fd, {
-            transformRequest: angular.identity,
-            headers: {'Content-Type': 'application/json'},
-            data: $scope.requisicao,
-        })
-        .then(function (response){
-            // console.log('foi');
-            // console.log(response);
-        } , function (error){
+        $http({
+            method : 'POST',
+            url : 'http://18.228.37.157/reprografiaapi/professor/requisicao/cadastrar',
+            headers : {
+                'Content-Type' : undefined
+            },
+            transformRequest : function(data) {
+                var formData = new FormData();
+                formData.append('meta-part', new Blob([ angular.toJson($scope.requisicao) ], {
+                    type : "application/json"
+                }));
+                formData.append("arquivo-part", arquivo);
+                return formData;
+            },
+            data : {
+                meta_part : $scope.requisicao,
+                imagem_part : arquivo
+            }
+        }).then(function(response) {
+            console.log('foi');
+            console.log(response);
+        }, function(response) {
             console.log('erro');
-            console.log(error);
-            // alert("Login já existente ou sessão expirada");
+            console.log(response);
         });
+
+        // $http.post('http://18.228.37.157/reprografiaapi/professor/requisicao/cadastrar', fd, {
+        //     transformRequest: angular.identity,
+        //     headers: {
+        //         'Authorization': 'Bearer ' + localStorage.getItem("userToken"),
+        //         // 'Content-Type': 'multipart/form-data'
+        //         'Content-Type': undefined
+        //     }
+        //     // data: $scope.requisicao,
+        // })
+        // .then(function (response){
+        //     console.log('foi');
+        //     console.log(response);
+        // } , function (error){
+        //     console.log('erro');
+        //     console.log(error);
+        //     // alert("Login já existente ou sessão expirada");
+        // });
         // .success(function(data){
         //     // vm.event.imageUrl = data.filesData[0].path;
         //     console.log('foi');

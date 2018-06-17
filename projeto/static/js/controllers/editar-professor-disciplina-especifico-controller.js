@@ -101,7 +101,7 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
 
                     $http({
                         method:'POST', 
-                        url:'http://18.228.37.157/reprografiaapi/suporte/professordisciplina/remover',
+                        url:'http://18.228.37.157/reprografiaapi/suporte/professordisciplina/desassociar',
                         data: objAssociacao
                     })
                     .then(function (response){
