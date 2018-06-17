@@ -11,6 +11,8 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
 
     var disciplinasUsuario = {};
 
+    $scope.todasAssociacoes = {};
+
 
     associar.click(function() {
         //adiciona selecionados
@@ -74,7 +76,7 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
         //adiciona selecionados
         var selecionado = minhasDisciplinas.find('option:selected');
         $.each(selecionado,function(i,d){
-            console.log(d);
+            // console.log(d);
             d = $(d);
             if(d.text()!==""){
                 // $scope.usuario.disciplina
@@ -90,7 +92,19 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
                     var index = $scope.usuario.disciplinas.map(function(e) { return e.id; }).indexOf(parseInt(d.val()));
                     $scope.usuario.disciplinas.splice(index,1);
 
+                    var filtroProfessorAssociacoes= $scope.todasAssociacoes.filter(function( obj ) {
+                        return obj.professor.id == idUsuario;
+                    })
+                    var filtroDisciplinaDesassociar = filtroProfessorAssociacoes.filter(function( obj ) {
+                        return obj.disciplina.id == parseInt(d.val());
+                    })
+                    // console.log('dos profesor');
+                    // console.log(filtroDisciplinaDesassociar[0].id);
+
+                    var idProfessorDisciplina = filtroDisciplinaDesassociar[0].id;
+
                     var objAssociacao = {
+                        id: idProfessorDisciplina,
                         disciplina: {
                             id: parseInt(d.val())
                         },
@@ -98,6 +112,8 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
                             id: idUsuario
                         }
                     };
+
+                    console.log(JSON.stringify(objAssociacao));
 
                     $http({
                         method:'POST', 
@@ -108,7 +124,9 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
                         alert("Alteração concluída com sucesso");
                         // $scope.usuario = {};
                         // redirecionar para a lista
-                    } , function(){
+                    } , function(error){
+                        console.log('erro');
+                        console.log(error);
                         // alert("Sessão expirada");
                         // logout();
                     });
@@ -134,9 +152,9 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
             }
             disciplinasUsuario= $scope.usuario.disciplinas;
             $scope.disciplinasUsuario = $scope.usuario.disciplinas;
-            console.log(disciplinasUsuario);
+            // console.log(disciplinasUsuario);
             carregarDisciplina(disciplinasUsuario);
-            console.log(disciplinasUsuario);
+            // console.log(disciplinasUsuario);
         } , function (response){
             // alert("Sessão expirada");
             // logout();
@@ -145,6 +163,7 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
         $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/suporte/professordisciplina/listar'})
         .then(function (response){
             var disciplinasProfessores = response.data;
+            $scope.todasAssociacoes  = response.data;
             console.log(disciplinasProfessores);
             // console.table(disciplinasUsuario);
         } , function (response){
