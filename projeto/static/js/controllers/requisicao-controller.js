@@ -45,6 +45,20 @@ app.controller("requisicaoController", function($scope, $http){
                 console.log(response);
                 
         });
+
+        $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/professor/requisicao/anexo/15'})
+    .then(function (response){
+        var disciplinasProfessores = response.data;
+        console.log('foi');
+        console.log(disciplinasProfessores);
+        // console.table(disciplinasUsuario);
+    } , function (error){
+        console.log('nao foi');
+        console.log(error)
+        // alert("Sessão expirada");
+        // logout();
+    });
+
     };
     dadosUsuario();
 
@@ -57,6 +71,16 @@ app.controller("requisicaoController", function($scope, $http){
     //     // alert("Sessão expirada");
     //     // logout();
     // });
+
+    $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/professor/requisicao/anexo/15'})
+    .then(function (response){
+        var disciplinasProfessores = response.data;
+        console.log(disciplinasProfessores);
+        // console.table(disciplinasUsuario);
+    } , function (response){
+        // alert("Sessão expirada");
+        // logout();
+    });
 
     // $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/suporte/perfil/listar'})
     // .then(function (response){
@@ -92,6 +116,7 @@ app.controller("requisicaoController", function($scope, $http){
         console.log(JSON.stringify($scope.requisicao));
 
         // $scope.usuario.tipoPessoa = "normal";
+        
 
         $http({
             method : 'POST',
