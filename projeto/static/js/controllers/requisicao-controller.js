@@ -63,9 +63,12 @@ app.controller("requisicaoController", function($scope, $http){
     };
     dadosUsuario();
 
+    $scope.associacaoProfessorDisciplina = {};
+
     $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/professor/professordisciplina/listarporprofessor'})
     .then(function (response){
         var disciplinasProfessores = response.data;
+        $scope.associacaoProfessorDisciplina = response.data;
         console.log(disciplinasProfessores);
         // console.table(disciplinasUsuario);
     } , function (response){
@@ -100,7 +103,15 @@ app.controller("requisicaoController", function($scope, $http){
         $scope.requisicao.colorida = $scope.requisicao.colorida==="true"?true:false;
         $scope.requisicao.grampeada = $scope.requisicao.grampeada==="true"?true:false;
 
-        $scope.requisicao.professorDisciplina = {id:1};
+        //pega id professor disciplina
+
+        var filtroProfessorAssociacoes= $scope.associacaoProfessorDisciplina.filter(function( obj ) {
+            return obj.disciplina.id == $scope.disciplinaSelecionada;
+        })
+        // console.log('dos profesor');
+        // console.log(filtroProfessorAssociacoes[0].id);
+
+        $scope.requisicao.professorDisciplina = {id:filtroProfessorAssociacoes[0].id};
 
         var arquivo = $scope.arquivo;
         console.log('arquivo');
@@ -138,9 +149,10 @@ app.controller("requisicaoController", function($scope, $http){
                 imagem_part : arquivo
             }
         }).then(function(response) {
-            console.log('foi');
-            console.log(response);
+            alert("Requisição criada com sucesso");
+            $scope.requisicao = {};
         }, function(response) {
+            alert(response);
             console.log('erro');
             console.log(response);
         });
