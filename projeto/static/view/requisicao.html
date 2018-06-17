@@ -28,53 +28,109 @@
 
                 <!-- Basic Form Elements Content -->
                 <form class="form-horizontal form-bordered" ng-submit="cadastrar()">
+
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="nome">Nome</label>
+                        <label class="col-md-3 control-label">Solicitante</label>
                         <div class="col-md-9">
-                            <input type="text" required id="nome" name="nome" class="form-control" placeholder="Emanoel" ng-model="usuario.nome">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="email">Email</label>
-                        <div class="col-md-9">
-                            <input type="email" required id="email" name="email" class="form-control" placeholder="emanoel@gmail.com" ng-model="usuario.email">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="login">Login</label>
-                        <div class="col-md-9">
-                            <input type="text" required id="login" name="login" class="form-control" placeholder="emanoelsantos" ng-model="usuario.login">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="senha">Senha</label>
-                        <div class="col-md-9">
-                            <input type="password" required id="senha" name="senha" class="form-control" placeholder="Senha" ng-model="usuario.senha">
+                            <p class="form-control-static">Otávio</p>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Ativo</label>
+                        <label class="col-md-3 control-label">Duplex</label>
                         <div class="col-md-9">
                             <div class="radio">
-                                <label for="ativo1">
-                                    <input type="radio" required id="ativo1" name="ativo" ng-model="usuario.ativo" value="true" checked="checked"> Sim
+                                <label for="duplex1">
+                                    <input required type="radio" id="duplex1" name="duplex" ng-model="requisicao.duplex" value="true"> Sim
                                 </label>
                             </div>
                             <div class="radio">
-                                <label for="ativo2">
-                                    <input type="radio" required id="ativo2" name="ativo" ng-model="usuario.ativo" value="false"> Não
+                                <label for="duplex2">
+                                    <input required type="radio" id="duplex2" name="duplex" ng-model="requisicao.duplex" value="false"> Não
                                 </label>
                             </div>
                         </div>
                     </div>
 
-                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="perfil">Perfil</label>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Grampeada</label>
                         <div class="col-md-9">
-                            <select id="perfil" required name="perfil" class="form-control" size="1" ng-model="usuario.perfil.id">
-                                    <option value="">---Selecione---</option>    
-                                    <option ng-repeat="opt in tipos" value="{{opt.id}}">{{opt.nome}}</option>
+                            <div class="radio">
+                                <label for="grampeada1">
+                                    <input required type="radio" id="grampeada1" name="grampeada" ng-model="requisicao.grampeada" value="true"> Sim
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label for="grampeada2">
+                                    <input required type="radio" id="grampeada2" name="grampeada"ng-model="requisicao.grampeada" value="false"> Não
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Colorida</label>
+                        <div class="col-md-9">
+                            <div class="radio">
+                                <label for="colorida1">
+                                    <input required type="radio" id="colorida1" name="colorida" ng-model="requisicao.colorida" value="true"> Sim
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label for="colorida2">
+                                    <input required type="radio" id="colorida2" name="colorida" ng-model="requisicao.colorida" value="false"> Não
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="numero_paginas">Número de páginas <span class="text-danger">*</span></label>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <input required type="number" id="numero_paginas" name="numero_paginas" class="form-control" placeholder="1" ng-model="requisicao.numeroDePaginas">
+                                <span class="input-group-addon"><i class="gi gi-asterisk"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="numero_copias">Número de cópias <span class="text-danger">*</span></label>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <input required type="number" id="numero_copias" name="numero_copias" class="form-control" placeholder="1" ng-model="requisicao.numeroDeCopias">
+                                <span class="input-group-addon"><i class="gi gi-asterisk"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="arquivo">Arquivo</label>
+                        <div class="col-md-9">
+                            <input required type="file" id="arquivo" name="arquivo" file-model="arquivo">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="data_abertura">Data de abertura</label>
+                        <div class="col-md-6">
+                            <input type="text" id="data_abertura" name="data_abertura" class="form-control" disabled >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Status</label>
+                        <div class="col-md-9">
+                            <p class="form-control-static">Aberto</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="disciplina">Disciplina</label>
+                        <div class="col-md-9">
+                            <select id="disciplina" required name="disciplina" class="form-control" size="1" ng-model="disciplinaSelecionada">
+                                    <option value="" selected>---Selecione---</option>    
+                                    <option ng-repeat="disc in disciplinasProfessor" value="{{disc.id}}">{{disc.descricao}}</option>
                             </select>
                         </div>
                     </div> 
