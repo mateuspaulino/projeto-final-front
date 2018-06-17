@@ -110,7 +110,7 @@ app.config(function($routeProvider) {
     controller: 'requisicaoController',
   })
   .when('/editar-requisicao', {
-    templateUrl: '../static/view/requisicao.html',
+    templateUrl: '../static/view/editar-requisicao.html',
     controller: 'editarRequisicaoController',
   })
   .when('/editar-requisicao/:requisicaoId', {

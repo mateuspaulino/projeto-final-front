@@ -4,18 +4,25 @@ app.controller("editarRequisicaoController", function($scope, $http){
 
     $scope.usuarios=[];
 
-    carregarUsuarios= function (){		
-        $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/suporte/pessoa/listar'})
+    var idUsuario = localStorage.getItem("idUsuario");
+
+    carregarRequisicoes= function (){		
+        $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/professor/requisicao/listar'})
         .then(function (response){
-            $scope.usuarios=response.data;
-            console.log(response.data);
+
+            //requisicoes do professor
+            var filtroRequisicoes = response.data.filter(function( obj ) {
+                return obj.professorDisciplina.professor.id == idUsuario;
+            })
+            $scope.requisicoes = filtroRequisicoes;
+            console.log(filtroRequisicoes);
             // TablesDatatables.init();
         } , function (response){
             alert("Sessão expirada");
             logout();
         });
     };
-    carregarUsuarios();
+    carregarRequisicoes();
 
     $scope.desativar= function(id){
         
@@ -26,7 +33,7 @@ app.controller("editarRequisicaoController", function($scope, $http){
         })
         .then(function (response){
             alert("Pessoa desativada com sucesso");
-            carregarUsuarios();
+            carregarRequisicoes();
         } , function(){
             alert("Sessão expirada");
             logout();
@@ -43,7 +50,7 @@ app.controller("editarRequisicaoController", function($scope, $http){
         })
         .then(function (response){
             alert("Pessoa ativada com sucesso");
-            carregarUsuarios();
+            carregarRequisicoes();
         } , function(){
             alert("Sessão expirada");
             logout();
