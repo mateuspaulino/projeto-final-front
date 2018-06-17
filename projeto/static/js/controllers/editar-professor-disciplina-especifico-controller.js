@@ -50,6 +50,7 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
                     };
 
                     console.log(objAssociacao);
+                    console.log(JSON.stringify(objAssociacao));
 
                     $http({
                         method:'POST', 
@@ -109,9 +110,20 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
                             id: parseInt(d.val())
                         },
                         professor: {
-                            id: idUsuario
+                            id: parseInt(idUsuario)
                         }
                     };
+                    
+   
+                    // {
+                    //     "id":2,
+                    //     "disciplina":{
+                    //         "id":2
+                    //     },
+                    //     "professor":{
+                    //         "id":"2"
+                    //     }
+                    // }
 
                     console.log(JSON.stringify(objAssociacao));
 
