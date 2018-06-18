@@ -44,17 +44,17 @@
                         <td>{{requisicao.historico[0].data}}</td>
                         <td><span class="label" ng-class="requisicao.andamentoVigente.status.descricao=='Aprovada' ? 'label-success' : requisicao.andamentoVigente.status.descricao=='Cancelada' ? 'label-danger' : requisicao.andamentoVigente.status.descricao=='Concluída' ? 'label-default' : 'label-primary'" >{{requisicao.andamentoVigente.status.descricao}}</span></td>
                         <td class="text-center">
-                            <div class="btn-group">
+                            <div class="btn-group" ng-hide="requisicao.andamentoVigente.status.descricao!=='Em Elaboração'">
                                 <a ng-click="cancelar(requisicao.id)" data-toggle="tooltip" title="Cancelar" class="btn btn-xs" ng-class="'btn-danger'"><i class="fa" ng-class="'fa-times'"></i></a>
                             </div>
                         </td>
                         <td class="text-center">
-                            <div class="btn-group">
+                            <div class="btn-group" ng-hide="requisicao.andamentoVigente.status.descricao!=='Em Elaboração'">
                                 <a ng-click="enviar(requisicao.id)" data-toggle="tooltip" title="Enviar para avaliação" class="btn btn-xs" ng-class="'btn-success'"><i class="fa" ng-class="'fa-check'"></i></a>
                             </div>
                         </td>
                         <td class="text-center">
-                            <div class="btn-group">
+                            <div class="btn-group" ng-hide="requisicao.andamentoVigente.status.descricao!=='Em Elaboração'">
                                 <a ng-href="#!/editar-requisicao/{{requisicao.id}}" data-toggle="tooltip" title="Editar" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
                             </div>
                         </td>

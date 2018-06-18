@@ -24,37 +24,61 @@ app.controller("editarRequisicaoController", function($scope, $http){
     };
     carregarRequisicoes();
 
-    $scope.desativar= function(id){
-        
+    $scope.cancelar = function(id){
+
+        var obj = {
+            "requisicao": {
+                "id": parseInt(id)	
+            },
+            "status": {
+                "id": 5
+            },
+            "observacao": "Professor cancelou"
+        };
+        console.log(obj);
         $http({
-            method:'GET', 
-            url:'http://18.228.37.157/reprografiaapi/suporte/pessoa/'+id+'/inativar',
-            // data: id
+            method:'POST', 
+            url:'http://18.228.37.157/reprografiaapi/geral/requisicao/alterar',
+            data: obj
         })
         .then(function (response){
-            alert("Pessoa desativada com sucesso");
+            alert("Requisição cancelada com sucesso");
             carregarRequisicoes();
-        } , function(){
-            alert("Sessão expirada");
-            logout();
+        } , function(error){
+            console.log('erro');
+            console.log(error);
+            // alert("Sessão expirada");
+            // logout();
         });
               
     }
 
-    $scope.ativar= function(id){
+    $scope.enviar= function(id){
         
-        $http({
-            method:'GET', 
-            url:'http://18.228.37.157/reprografiaapi/suporte/pessoa/'+id+'/ativar',
-            // data: id
-        })
-        .then(function (response){
-            alert("Pessoa ativada com sucesso");
-            carregarRequisicoes();
-        } , function(){
-            alert("Sessão expirada");
-            logout();
-        });
+        // var obj = {
+        //     "requisicao": {
+        //         "id":id	
+        //     },
+        //     "status": {
+        //         "id": 2
+        //     },
+        //     "observacao": "Professor cancelou"
+        // };
+        
+        // $http({
+        //     method:'POST', 
+        //     url:'http://18.228.37.157/reprografiaapi/geral/requisicao/alterar',
+        //     data: obj
+        // })
+        // .then(function (response){
+        //     alert("Requisição cancelada com sucesso");
+        //     carregarRequisicoes();
+        // } , function(error){
+        //     console.log('erro');
+        //     console.log(error);
+        //     // alert("Sessão expirada");
+        //     // logout();
+        // });
               
     }
 

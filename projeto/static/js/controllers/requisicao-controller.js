@@ -76,15 +76,15 @@ app.controller("requisicaoController", function($scope, $http){
         // logout();
     });
 
-    $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/professor/requisicao/anexo/15'})
-    .then(function (response){
-        var disciplinasProfessores = response.data;
-        console.log(disciplinasProfessores);
-        // console.table(disciplinasUsuario);
-    } , function (response){
-        // alert("Sessão expirada");
-        // logout();
-    });
+    // $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/professor/requisicao/anexo/15'})
+    // .then(function (response){
+    //     var disciplinasProfessores = response.data;
+    //     console.log(disciplinasProfessores);
+    //     // console.table(disciplinasUsuario);
+    // } , function (response){
+    //     // alert("Sessão expirada");
+    //     // logout();
+    // });
 
     // $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/suporte/perfil/listar'})
     // .then(function (response){
