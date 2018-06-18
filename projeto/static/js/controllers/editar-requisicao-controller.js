@@ -15,7 +15,12 @@ app.controller("editarRequisicaoController", function($scope, $http){
             //     return obj.professorDisciplina.professor.id == idUsuario;
             // })
             $scope.requisicoes = response.data;
-            console.log(response.data);
+            $.each($scope.requisicoes, function(i,d){
+                $.each(d.historico, function(indx, hist){
+                    $scope.requisicoes[i].observacao = hist.observacao;
+                })
+            })
+            console.log($scope.requisicoes);
             // TablesDatatables.init();
         } , function (response){
             alert("Sessão expirada");
@@ -27,7 +32,12 @@ app.controller("editarRequisicaoController", function($scope, $http){
     $scope.cancelar = function(id){
 
         var opcao = confirm("Tem certeza que deseja cancelar a requisição?\nEssa ação não poderá ser desfeita!");
-        if(opcao){
+        var observacao = prompt("Caso deseje, pode adicionar uma observação", "");
+        if(opcao==true && observacao != null){
+
+            if(observacao==""){
+                observacao = "Professor cancelou";
+            }
 
             var obj = {
                 "requisicao": {
@@ -36,7 +46,7 @@ app.controller("editarRequisicaoController", function($scope, $http){
                 "status": {
                     "id": 5
                 },
-                "observacao": "Professor cancelou"
+                "observacao": observacao
             };
             console.log(obj);
             $http({
@@ -62,7 +72,12 @@ app.controller("editarRequisicaoController", function($scope, $http){
     $scope.enviar= function(id){
 
         var opcao = confirm("Tem certeza que deseja enviar a requisição?\nEssa ação não poderá ser desfeita!");
-        if(opcao){
+        var observacao = prompt("Caso deseje, pode adicionar uma observação", "");
+        if(opcao==true && observacao != null){
+
+            if(observacao==""){
+                observacao = "Professor enviou para avaliação";
+            }
 
             var obj = {
                 "requisicao": {
@@ -71,7 +86,7 @@ app.controller("editarRequisicaoController", function($scope, $http){
                 "status": {
                     "id": 2
                 },
-                "observacao": "Professor enviou para avaliação"
+                "observacao": observacao
             };
             
             $http({
