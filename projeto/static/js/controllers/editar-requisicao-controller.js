@@ -23,8 +23,7 @@ app.controller("editarRequisicaoController", function($scope, $http){
             console.log($scope.requisicoes);
             // TablesDatatables.init();
         } , function (response){
-            alert("Sessão expirada");
-            logout();
+            alert("Nenhuma requisição aberta");
         });
     };
     carregarRequisicoes();
@@ -41,6 +40,39 @@ app.controller("editarRequisicaoController", function($scope, $http){
         });
 
     }
+
+    // teste
+    // $http({method:'GET', url:"http://18.228.37.157/reprografiaapi/professor/requisicao/anexo/15"})
+    //     .then(function (response){
+    //         console.log('foi');
+    //         console.log(response);
+    //     } , function (error){
+    //         console.log('erro');
+    //         console.log(error);
+    //     });
+    // $http({
+    //     method:'GET', 
+    //     url:"http://18.228.37.157/reprografiaapi/professor/requisicao/anexo/15",
+    //     data: {},
+    // }).success(function (data, status, headers, config){
+    //         console.log('foi');
+    //         console.log(data);
+    //     });
+    $.ajax
+    ({
+      type: "GET",
+      url: "http://18.228.37.157/reprografiaapi/professor/requisicao/anexo/15",
+      dataType: 'json',
+      async: false,
+      headers: {
+        "Authorization": "Bearer 3bf7a768062783751a1855990716a061"
+      },
+      complete: function (d){
+        console.log(d);
+      }
+    });
+
+
 
     $scope.cancelar = function(id){
 
