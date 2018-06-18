@@ -94,9 +94,9 @@
                     </div>
 
                     <div class="form-group">
-                            <label class="col-md-3 control-label">Histórico</label>
+                            <label class="col-md-3 control-label">Histórico de observações</label>
                             <div class="col-md-9">
-                                <p class="form-control-static" ng-repeat="hist in requisicao.historico">{{hist.responsavel.nome}} : {{hist.observacao!==null?hist.observacao:"Criou a requisição"}}</p>
+                                <p class="form-control-static" ng-repeat="hist in requisicao.historico">{{hist.responsavel.nome}} : {{hist.observacao!==null?hist.observacao:"Criou a requisição"}} | {{hist.status.descricao}}</p>
                             </div>
                         </div>
 
