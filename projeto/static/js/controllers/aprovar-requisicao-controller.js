@@ -18,8 +18,8 @@ app.controller("aprovarRequisicaoController", function($scope, $http){
             console.log(response.data);
             // TablesDatatables.init();
         } , function (response){
-            alert("Sessão expirada");
-            logout();
+            alert("Nenhuma requisição para ser aprovada!");
+            // logout();
         });
     };
     carregarRequisicoes();

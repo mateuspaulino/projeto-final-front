@@ -17,9 +17,6 @@ app.controller("aprovarRequisicaoEspecificoController", function($scope, $routeP
             })
             $scope.requisicao = filtro[0];
             //converte para string para marcar as opces no forumario, já que sao strings lá
-            $scope.requisicao.duplex = $scope.requisicao.duplex===true?"true":"false";
-            $scope.requisicao.colorida = $scope.requisicao.colorida===true?"true":"false";
-            $scope.requisicao.grampeada = $scope.requisicao.grampeada===true?"true":"false";
             console.log(filtro);
         } , function (response){
             alert("Sessão expirada");
@@ -28,35 +25,82 @@ app.controller("aprovarRequisicaoEspecificoController", function($scope, $routeP
     };
     carregarRequisicao();
 
-    //disciplinas do professor
-    // $scope.disciplinasProfessor= {};
-    // $scope.disciplinaSelecionada = {};
+    $scope.observacao = "";
 
-    // dadosUsuario = function (){
-		
-	// 	$http({method:'GET', url:'http://18.228.37.157/reprografiaapi/seguranca/usuario/logado'})
-	// 	.then(function (response){
-    //             $scope.disciplinasProfessor=response.data.pessoa.disciplinas;
-    //         } , function (response){
-    //             console.log(response);
-    //     });
+    $scope.aprovar= function(id){
 
-    // };
-    // dadosUsuario();
+        if($scope.observacao == ""){
+            $scope.observacao = "Coordenador aprovou a requisição" 
+        }
 
-    
-    // Pegar relacao professor-disciplina, para depois enviar na requisicao o id
+        var opcao = confirm("Tem certeza que deseja aprovar a requisição?\nEssa ação não poderá ser desfeita!");
+        if(opcao){
 
-    // $scope.associacaoProfessorDisciplina = {};
+            var obj = {
+                "requisicao": {
+                    "id":id	
+                },
+                "status": {
+                    "id": 3
+                },
+                "observacao": $scope.observacao
+            };
+            
+            $http({
+                method:'POST', 
+                url:'http://18.228.37.157/reprografiaapi/geral/requisicao/alterar',
+                data: obj
+            })
+            .then(function (response){
+                alert("A requisição foi enviada para a reprografia!");
+                $location.path("/aprovar-requisicao");
+            } , function(error){
+                console.log('erro');
+                console.log(error);
+                // alert("Sessão expirada");
+                // logout();
+            });
 
-    // $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/professor/professordisciplina/listarporprofessor'})
-    // .then(function (response){
-    //     var disciplinasProfessores = response.data;
-    //     $scope.associacaoProfessorDisciplina = response.data;
-    //     console.log(disciplinasProfessores);
-    // } , function (response){
-    //     // alert("Sessão expirada");
-    //     // logout();
-    // });
+        }
+              
+    }
+
+    $scope.recusar= function(id){
+
+        if($scope.observacao == ""){
+            $scope.observacao = "Coordenador devolveu a requisição" 
+        }
+
+        var opcao = confirm("Tem certeza que deseja recusar a requisição?");
+        if(opcao){
+
+            var obj = {
+                "requisicao": {
+                    "id":id	
+                },
+                "status": {
+                    "id": 1
+                },
+                "observacao": $scope.observacao
+            };
+            
+            $http({
+                method:'POST', 
+                url:'http://18.228.37.157/reprografiaapi/geral/requisicao/alterar',
+                data: obj
+            })
+            .then(function (response){
+                alert("A requisição foi devolvida para o professor!");
+                $location.path("/aprovar-requisicao");
+            } , function(error){
+                console.log('erro');
+                console.log(error);
+                // alert("Sessão expirada");
+                // logout();
+            });
+
+        }
+              
+    }
 
 })
