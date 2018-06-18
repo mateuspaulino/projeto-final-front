@@ -26,59 +26,70 @@ app.controller("editarRequisicaoController", function($scope, $http){
 
     $scope.cancelar = function(id){
 
-        var obj = {
-            "requisicao": {
-                "id": parseInt(id)	
-            },
-            "status": {
-                "id": 5
-            },
-            "observacao": "Professor cancelou"
-        };
-        console.log(obj);
-        $http({
-            method:'POST', 
-            url:'http://18.228.37.157/reprografiaapi/geral/requisicao/alterar',
-            data: obj
-        })
-        .then(function (response){
-            alert("Requisição cancelada com sucesso");
-            carregarRequisicoes();
-        } , function(error){
-            console.log('erro');
-            console.log(error);
-            // alert("Sessão expirada");
-            // logout();
-        });
+        var opcao = confirm("Tem certeza que deseja cancelar a requisição?\nEssa ação não poderá ser desfeita!");
+        if(opcao){
+
+            var obj = {
+                "requisicao": {
+                    "id": parseInt(id)	
+                },
+                "status": {
+                    "id": 5
+                },
+                "observacao": "Professor cancelou"
+            };
+            console.log(obj);
+            $http({
+                method:'POST', 
+                url:'http://18.228.37.157/reprografiaapi/geral/requisicao/alterar',
+                data: obj
+            })
+            .then(function (response){
+                alert("Requisição cancelada com sucesso");
+                carregarRequisicoes();
+            } , function(error){
+                console.log('erro');
+                console.log(error);
+                // alert("Sessão expirada");
+                // logout();
+            });
+
+        }
+        
               
     }
 
     $scope.enviar= function(id){
-        
-        // var obj = {
-        //     "requisicao": {
-        //         "id":id	
-        //     },
-        //     "status": {
-        //         "id": 2
-        //     },
-        //     "observacao": "Professor cancelou"
-        // };
-        
-        // $http({
-        //     method:'POST', 
-        //     url:'http://18.228.37.157/reprografiaapi/geral/requisicao/alterar',
-        //     data: obj
-        // })
-        // .then(function (response){
-        //     alert("Requisição cancelada com sucesso");
-        //     carregarRequisicoes();
-        // } , function(error){
-        //     console.log('erro');
-        //     console.log(error);
-        //     // alert("Sessão expirada");
-        //     // logout();
-        // });
+
+        var opcao = confirm("Tem certeza que deseja enviar a requisição?\nEssa ação não poderá ser desfeita!");
+        if(opcao){
+
+            var obj = {
+                "requisicao": {
+                    "id":id	
+                },
+                "status": {
+                    "id": 2
+                },
+                "observacao": "Professor enviou para avaliação"
+            };
+            
+            $http({
+                method:'POST', 
+                url:'http://18.228.37.157/reprografiaapi/geral/requisicao/alterar',
+                data: obj
+            })
+            .then(function (response){
+                alert("Requisição enviada para avaliação com sucesso");
+                carregarRequisicoes();
+            } , function(error){
+                console.log('erro');
+                console.log(error);
+                // alert("Sessão expirada");
+                // logout();
+            });
+
+        }
               
     }
 
