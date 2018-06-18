@@ -11,11 +11,11 @@ app.controller("editarRequisicaoController", function($scope, $http){
         .then(function (response){
 
             //requisicoes do professor
-            var filtroRequisicoes = response.data.filter(function( obj ) {
-                return obj.professorDisciplina.professor.id == idUsuario;
-            })
-            $scope.requisicoes = filtroRequisicoes;
-            // console.log(filtroRequisicoes);
+            // var filtroRequisicoes = response.data.filter(function( obj ) {
+            //     return obj.professorDisciplina.professor.id == idUsuario;
+            // })
+            $scope.requisicoes = response.data;
+            console.log(response.data);
             // TablesDatatables.init();
         } , function (response){
             alert("Sessão expirada");

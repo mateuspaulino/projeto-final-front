@@ -29,7 +29,7 @@
                         <th>N. cópias</th>
                         <!-- <th>Arquivo</th> -->
                         <th>Abertura</th>
-                        <!-- <th>Status</th> -->
+                        <th>Status</th>
                         <th class="text-center">Cancelar</th>
                         <th class="text-center">Enviar</th>
                         <th class="text-center">Editar</th>
@@ -42,7 +42,7 @@
                         <td>{{requisicao.numeroDeCopias}}</td>
                         <!-- <td>{{requisicao.nomeArquivo}}</td> -->
                         <td>{{requisicao.historico[0].data}}</td>
-                        <!-- <td><span class="label" ng-class="requisicao.ativo ? 'label-success' : 'label-info'" >{{requisicao.ativo && 'ativo' || 'inativo'}}</span></td> -->
+                        <td><span class="label" ng-class="requisicao.andamentoVigente.status.descricao=='Aprovada' ? 'label-success' : requisicao.andamentoVigente.status.descricao=='Cancelada' ? 'label-danger' : requisicao.andamentoVigente.status.descricao=='Concluída' ? 'label-default' : 'label-primary'" >{{requisicao.andamentoVigente.status.descricao}}</span></td>
                         <td class="text-center">
                             <div class="btn-group">
                                 <a ng-click="cancelar(requisicao.id)" data-toggle="tooltip" title="Cancelar" class="btn btn-xs" ng-class="'btn-danger'"><i class="fa" ng-class="'fa-times'"></i></a>
