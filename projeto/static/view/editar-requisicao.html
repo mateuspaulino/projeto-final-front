@@ -30,6 +30,7 @@
                         <th>Abertura</th>
                         <th>Status</th>
                         <th>Observação</th>
+                        <th class="text-center">Anexo</th>
                         <th class="text-center">Cancelar</th>
                         <th class="text-center">Enviar</th>
                         <th class="text-center">Editar</th>
@@ -43,6 +44,11 @@
                         <td>{{requisicao.historico[0].data}}</td>
                         <td><span class="label" ng-class="requisicao.andamentoVigente.status.descricao=='Aprovada' ? 'label-success' : requisicao.andamentoVigente.status.descricao=='Cancelada' ? 'label-danger' : requisicao.andamentoVigente.status.descricao=='Concluída' ? 'label-default' : requisicao.andamentoVigente.status.descricao=='Em Avaliação' ? 'label-warning' : 'label-primary'" >{{requisicao.andamentoVigente.status.descricao}}</span></td>
                         <td>{{requisicao.observacao}}</td>
+                        <td class="text-center">
+                                <div class="btn-group">
+                                    <a ng-click="baixar(requisicao.id)" data-toggle="tooltip" title="Baixar anexo" class="btn btn-xs" ng-class="'btn-warning'"><i class="fa" ng-class="'fa-angle-double-down'"></i></a>
+                                </div>
+                            </td>
                         <td class="text-center">
                             <div class="btn-group" ng-hide="requisicao.andamentoVigente.status.descricao!=='Em Elaboração'">
                                 <a ng-click="cancelar(requisicao.id)" data-toggle="tooltip" title="Cancelar" class="btn btn-xs" ng-class="'btn-danger'"><i class="fa" ng-class="'fa-times'"></i></a>

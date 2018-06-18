@@ -125,6 +125,14 @@ app.config(function($routeProvider) {
     templateUrl: '../static/view/aprovar-requisicao-especifico.html',
     controller: 'aprovarRequisicaoEspecificoController',
   })
+  .when('/concluir-requisicao', {
+    templateUrl: '../static/view/concluir-requisicao.html',
+    controller: 'concluirRequisicaoController',
+  })
+  .when('/concluir-requisicao/:requisicaoId', {
+    templateUrl: '../static/view/concluir-requisicao-especifico.html',
+    controller: 'concluirRequisicaoEspecificoController',
+  })
   .when('/', {
     templateUrl: '../static/view/home.html',
     controller: '',

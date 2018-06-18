@@ -1,4 +1,4 @@
-app.controller("editarRequisicaoController", function($scope, $http){
+app.controller("concluirRequisicaoController", function($scope, $http){
 
     // TablesDatatables.init();
 
@@ -7,7 +7,7 @@ app.controller("editarRequisicaoController", function($scope, $http){
     var idUsuario = localStorage.getItem("idUsuario");
 
     carregarRequisicoes= function (){		
-        $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/professor/requisicao/listar'})
+        $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/geral/requisicao/listar/porstatus?idStatus=3'})
         .then(function (response){
 
             //requisicoes do professor
@@ -15,42 +15,26 @@ app.controller("editarRequisicaoController", function($scope, $http){
             //     return obj.professorDisciplina.professor.id == idUsuario;
             // })
             $scope.requisicoes = response.data;
+            console.log(response.data);
+            
+            //observacak
             $.each($scope.requisicoes, function(i,d){
                 $.each(d.historico, function(indx, hist){
                     $scope.requisicoes[i].observacao = hist.observacao;
                 })
             })
-            console.log($scope.requisicoes);
             // TablesDatatables.init();
         } , function (response){
-            alert("Sessão expirada");
-            logout();
+            alert("Nenhuma requisição para ser concluída!");
+            // logout();
         });
     };
     carregarRequisicoes();
 
-    $scope.baixar = function(id){
-
-        $http({method:'GET', url:"http://18.228.37.157/reprografiaapi/professor/requisicao/anexo/"+id+""})
-        .then(function (response){
-            console.log('foi');
-            console.log(response);
-        } , function (error){
-            console.log('erro');
-            console.log(error);
-        });
-
-    }
-
     $scope.cancelar = function(id){
 
         var opcao = confirm("Tem certeza que deseja cancelar a requisição?\nEssa ação não poderá ser desfeita!");
-        var observacao = prompt("Caso deseje, pode adicionar uma observação", "");
-        if(opcao==true && observacao != null){
-
-            if(observacao==""){
-                observacao = "Professor cancelou";
-            }
+        if(opcao){
 
             var obj = {
                 "requisicao": {
@@ -59,7 +43,7 @@ app.controller("editarRequisicaoController", function($scope, $http){
                 "status": {
                     "id": 5
                 },
-                "observacao": observacao
+                "observacao": "Professor cancelou"
             };
             console.log(obj);
             $http({
@@ -85,12 +69,7 @@ app.controller("editarRequisicaoController", function($scope, $http){
     $scope.enviar= function(id){
 
         var opcao = confirm("Tem certeza que deseja enviar a requisição?\nEssa ação não poderá ser desfeita!");
-        var observacao = prompt("Caso deseje, pode adicionar uma observação", "");
-        if(opcao==true && observacao != null){
-
-            if(observacao==""){
-                observacao = "Professor enviou para avaliação";
-            }
+        if(opcao){
 
             var obj = {
                 "requisicao": {
@@ -99,7 +78,7 @@ app.controller("editarRequisicaoController", function($scope, $http){
                 "status": {
                     "id": 2
                 },
-                "observacao": observacao
+                "observacao": "Professor enviou para avaliação"
             };
             
             $http({

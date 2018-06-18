@@ -3,13 +3,13 @@
     <div class="content-header">
         <div class="header-section">
             <h1>
-                <i class="gi gi-notes_2"></i>Aprovar/Recusar requisição<br><small>Em caso de dúvidas, contate o coordenador</small>
+                <i class="gi gi-notes_2"></i>Concluir requisição<br><small>Em caso de dúvidas, contate o coordenador</small>
             </h1>
         </div>
     </div>
     <ul class="breadcrumb breadcrumb-top">
         <li>Requisição</li>
-        <li><a href="">Aprovar/Recusar</a></li>
+        <li><a href="">Concluir</a></li>
     </ul>
     <!-- END Forms General Header -->
 
@@ -27,7 +27,7 @@
                 <!-- END Form Elements Title -->
 
                 <!-- Basic Form Elements Content -->
-                <form class="form-horizontal form-bordered">
+                <form class="form-horizontal form-bordered" ng-submit="concluir(requisicao.id)">
 
                     <div class="form-group">
                         <label class="col-md-3 control-label">Solicitante</label>
@@ -103,20 +103,13 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="observacao">Observação</label>
                         <div class="col-md-9">
-                            <textarea required id="observacao" name="observacao" rows="9" class="form-control" placeholder="Fale um pouco sobre a sua decisão..." ng-model="observacao"></textarea>
+                            <textarea id="observacao" name="observacao" rows="9" class="form-control" placeholder="Fale um pouco sobre a impressão..." ng-model="observacao"></textarea>
                         </div>
                     </div>
                    
                     <div class="form-group form-actions">
                         <div class="col-md-9 col-md-offset-3">
-                            <!-- <td class="text-center">
-                                    <div class="btn-group" ng-hide="requisicao.andamentoVigente.status.descricao!=='Em Elaboração'">
-                                        <a ng-click="cancelar(requisicao.id)" data-toggle="tooltip" title="Cancelar" class="btn btn-xs" ng-class="'btn-danger'"><i class="fa" ng-class="'fa-times'"></i></a>
-                                    </div>
-                                </td> -->
-
-                            <button type="submit" class="btn btn-sm btn-primary" ng-click="aprovar(requisicao.id)" data-toggle="tooltip" title="Enviar para reprografia" class="btn btn-xs" ng-class="'btn-success'"><i class="fa fa-check"></i> Aprovar</button>
-                            <button type="submit" class="btn btn-sm btn-primary" ng-click="recusar(requisicao.id)" data-toggle="tooltip" title="Devolver para o professor" class="btn btn-xs" ng-class="'btn-danger'"><i class="fa fa-times"></i> Recusar</button>
+                                <button type="submit" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Concluir requisição" class="btn btn-xs" ng-class="'btn-success'"><i class="fa fa-check"></i> Concluir requisição</button>
                         </div>
                     </div>
                 </form>
