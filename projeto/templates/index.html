@@ -60,6 +60,10 @@
         <script src="../static/js/controllers/editar-requisicao-controller.js"></script>
         <script src="../static/js/controllers/editar-requisicao-especifico-controller.js"></script>
 
+        <!-- REQUISIÇÃO - COORDENADOR -->
+        <script src="../static/js/controllers/aprovar-requisicao-controller.js"></script>
+        <script src="../static/js/controllers/aprovar-requisicao-especifico-controller.js"></script>
+
         <!-- INTERCEPTADOR DE REQUISIÇÕES -->
         <script src="../static/js/interceptor/token-interceptor.js"></script>
 
@@ -156,6 +160,9 @@
                                         </li>
                                         <li ng-show="checarPermissoes('Professor')">
                                             <a ng-href="#!/editar-requisicao">Editar Requisição</a>
+                                        </li>
+                                        <li ng-show="checarPermissoes('Coordenador')">
+                                            <a ng-href="#!/aprovar-requisicao">Aprovar/Recusar requisição</a>
                                         </li>
                                     </ul>
                                 </li>

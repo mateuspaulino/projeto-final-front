@@ -1,0 +1,57 @@
+<div id="page-content">
+    <!-- Datatables Header -->
+    <div class="content-header">
+        <div class="header-section">
+            <h1>
+                <i class="gi gi-notes_2"></i>Aprovar ou recusar requisições<br><small>Em caso de dúvidas, contate o coordenador</small>
+            </h1>
+        </div>
+    </div>
+    <ul class="breadcrumb breadcrumb-top">
+        <li>Aprovar</li>
+        <li><a href="">Requisição</a></li>
+    </ul>
+    <!-- END Datatables Header -->
+
+    <!-- Datatables Content -->
+    <div class="block full">
+        <div class="block-title">
+            <h2><strong>Lista</strong> geral</h2>
+        </div>
+        <p>Abaixo as requisições que precisam ser aprovadas</p>
+
+        <div class="table-responsive">
+            <table id="lista-requisicoes" class="table table-vcenter table-condensed table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">ID</th>
+                        <th>Disciplina</th>
+                        <th>N. cópias</th>
+                        <th>N. páginas</th>
+                        <th>Arquivo</th>
+                        <th>Abertura</th>
+                        <th>Status</th>
+                        <th class="text-center">Entrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="requisicao in requisicoes">
+                        <td class="text-center">{{requisicao.id}}</td>
+                        <td>{{requisicao.professorDisciplina.disciplina.descricao }}</td>
+                        <td>{{requisicao.numeroDeCopias}}</td>
+                        <td>{{requisicao.numeroDePaginas}}</td>
+                        <td>{{requisicao.nomeArquivo}}</td>
+                        <td>{{requisicao.historico[0].data}}</td>
+                        <td><span class="label" ng-class="requisicao.andamentoVigente.status.descricao=='Aprovada' ? 'label-success' : requisicao.andamentoVigente.status.descricao=='Cancelada' ? 'label-danger' : requisicao.andamentoVigente.status.descricao=='Concluída' ? 'label-default' : requisicao.andamentoVigente.status.descricao=='Em Avaliação' ? 'label-warning' : 'label-primary'" >{{requisicao.andamentoVigente.status.descricao}}</span></td>
+                        <td class="text-center">
+                            <div class="btn-group">
+                                <a ng-href="#!/aprovar-requisicao/{{requisicao.id}}" data-toggle="tooltip" title="Editar" class="btn btn-xs btn-default"><i class="fa fa-angle-double-right"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- END Datatables Content -->
+</div>

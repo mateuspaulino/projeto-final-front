@@ -117,6 +117,14 @@ app.config(function($routeProvider) {
     templateUrl: '../static/view/editar-requisicao-especifico.html',
     controller: 'editarRequisicaoEspecificoController',
   })
+  .when('/aprovar-requisicao', {
+    templateUrl: '../static/view/aprovar-requisicao.html',
+    controller: 'aprovarRequisicaoController',
+  })
+  .when('/aprovar-requisicao/:requisicaoId', {
+    templateUrl: '../static/view/aprovar-requisicao-especifico.html',
+    controller: 'aprovarRequisicaoEspecificoController',
+  })
   .when('/', {
     templateUrl: '../static/view/home.html',
     controller: '',
