@@ -16,7 +16,7 @@ app.controller("aprovarRequisicaoEspecificoController", function($scope, $routeP
                 return requisicao.id == idRequisicao;
             })
             $scope.requisicao = filtro[0];
-            //converte para string para marcar as opces no forumario, já que sao strings lá
+            
             console.log(filtro);
         } , function (response){
             alert("Sessão expirada");

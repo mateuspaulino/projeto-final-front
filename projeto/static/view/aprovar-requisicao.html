@@ -30,6 +30,7 @@
                         <th>N. páginas</th>
                         <th>Arquivo</th>
                         <th>Abertura</th>
+                        <th>Observação</th>
                         <th>Status</th>
                         <th class="text-center">Entrar</th>
                     </tr>
@@ -42,6 +43,7 @@
                         <td>{{requisicao.numeroDePaginas}}</td>
                         <td>{{requisicao.nomeArquivo}}</td>
                         <td>{{requisicao.historico[0].data}}</td>
+                        <td>{{requisicao.observacao}}</td>
                         <td><span class="label" ng-class="requisicao.andamentoVigente.status.descricao=='Aprovada' ? 'label-success' : requisicao.andamentoVigente.status.descricao=='Cancelada' ? 'label-danger' : requisicao.andamentoVigente.status.descricao=='Concluída' ? 'label-default' : requisicao.andamentoVigente.status.descricao=='Em Avaliação' ? 'label-warning' : 'label-primary'" >{{requisicao.andamentoVigente.status.descricao}}</span></td>
                         <td class="text-center">
                             <div class="btn-group">
