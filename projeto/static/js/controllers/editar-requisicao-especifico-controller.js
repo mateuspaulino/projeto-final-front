@@ -32,6 +32,10 @@ app.controller("editarRequisicaoEspecificoController", function($scope, $routePa
                 return requisicao.id == idRequisicao;
             })
             $scope.requisicao = filtro[0];
+            //converte para string para marcar as opces no forumario, já que sao strings lá
+            $scope.requisicao.duplex = $scope.requisicao.duplex===true?"true":"false";
+            $scope.requisicao.colorida = $scope.requisicao.colorida===true?"true":"false";
+            $scope.requisicao.grampeada = $scope.requisicao.grampeada===true?"true":"false";
             console.log(filtro);
         } , function (response){
             alert("Sessão expirada");
@@ -39,6 +43,22 @@ app.controller("editarRequisicaoEspecificoController", function($scope, $routePa
         });
     };
     carregarRequisicoes();
+
+    //disciplinas do professor
+    $scope.disciplinasProfessor= {};
+    $scope.disciplinaSelecionada = {};
+
+    dadosUsuario = function (){
+		
+		$http({method:'GET', url:'http://18.228.37.157/reprografiaapi/seguranca/usuario/logado'})
+		.then(function (response){
+                $scope.disciplinasProfessor=response.data.pessoa.disciplinas;
+            } , function (response){
+                console.log(response);
+        });
+
+    };
+    dadosUsuario();
 
     // $scope.tipos = {};
     // $scope.tipoSelecionado = {};
