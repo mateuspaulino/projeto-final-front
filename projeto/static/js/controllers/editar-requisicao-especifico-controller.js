@@ -1,35 +1,55 @@
+app.directive('fileModel', ['$parse', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
+
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+}]);
+
 app.controller("editarRequisicaoEspecificoController", function($scope, $routeParams, $http, $location){
-    $scope.usuario = {};
+    $scope.requisicao = {};
+    $scope.tipos = {};
 
-    var idUsuario = $routeParams.usuarioId;
+    var idUsuario = localStorage.getItem("idUsuario");
+    var nomeUsuario = localStorage.getItem("nomeUsuario");
 
-    carregarClientes= function (){		
-        $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/suporte/pessoa/listar'})
+    var idRequisicao = $routeParams.requisicaoId;
+
+    carregarRequisicoes= function (){		
+        $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/professor/requisicao/listar'})
         .then(function (response){
-            var usuarios = response.data;
+            var requisicoes = response.data;
             //filtra pelo usuário da url
-            var filtro = usuarios.filter(function( usuario ) {
-                return usuario.id == idUsuario;
+            var filtro = requisicoes.filter(function( requisicao ) {
+                return requisicao.id == idRequisicao;
             })
-            $scope.usuario = filtro[0];
-            // console.log($scope.usuario);
+            $scope.requisicao = filtro[0];
+            console.log(filtro);
         } , function (response){
             alert("Sessão expirada");
             logout();
         });
     };
-    carregarClientes();
+    carregarRequisicoes();
 
-    $scope.tipos = {};
-    $scope.tipoSelecionado = {};
+    // $scope.tipos = {};
+    // $scope.tipoSelecionado = {};
 
-    $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/suporte/perfil/listar'})
-    .then(function (response){
-        $scope.tipos = response.data;
-        // console.log(response.data);
-    } , function (response){
-        // console.log(response);
-    });
+    // $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/suporte/perfil/listar'})
+    // .then(function (response){
+    //     $scope.tipos = response.data;
+    //     // console.log(response.data);
+    // } , function (response){
+    //     // console.log(response);
+    // });
 
     $scope.alterar= function(){
         

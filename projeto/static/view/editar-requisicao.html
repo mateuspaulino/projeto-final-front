@@ -25,24 +25,37 @@
                 <thead>
                     <tr>
                         <th class="text-center">ID</th>
-                        <th>Usuário</th>
-                        <th>Email</th>
-                        <th>Perfil</th>
-                        <th>Status</th>
-                        <th class="text-center">Ações</th>
+                        <th>Disciplina</th>
+                        <th>N. cópias</th>
+                        <!-- <th>Arquivo</th> -->
+                        <th>Abertura</th>
+                        <!-- <th>Status</th> -->
+                        <th class="text-center">Cancelar</th>
+                        <th class="text-center">Enviar</th>
+                        <th class="text-center">Editar</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="requisicao in requisicoes">
                         <td class="text-center">{{requisicao.id}}</td>
-                        <td>{{requisicao.nome}}</td>
-                        <td>{{requisicao.email}}</td>
-                        <td>{{requisicao.perfil.nome}}</td>
-                        <td><span class="label" ng-class="requisicao.ativo ? 'label-success' : 'label-info'" >{{requisicao.ativo && 'ativo' || 'inativo'}}</span></td>
+                        <td>{{requisicao.professorDisciplina.disciplina.descricao }}</td>
+                        <td>{{requisicao.numeroDeCopias}}</td>
+                        <!-- <td>{{requisicao.nomeArquivo}}</td> -->
+                        <td>{{requisicao.historico[0].data}}</td>
+                        <!-- <td><span class="label" ng-class="requisicao.ativo ? 'label-success' : 'label-info'" >{{requisicao.ativo && 'ativo' || 'inativo'}}</span></td> -->
+                        <td class="text-center">
+                            <div class="btn-group">
+                                <a ng-click="cancelar(requisicao.id)" data-toggle="tooltip" title="Cancelar" class="btn btn-xs" ng-class="'btn-danger'"><i class="fa" ng-class="'fa-times'"></i></a>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="btn-group">
+                                <a ng-click="enviar(requisicao.id)" data-toggle="tooltip" title="Enviar para avaliação" class="btn btn-xs" ng-class="'btn-success'"><i class="fa" ng-class="'fa-check'"></i></a>
+                            </div>
+                        </td>
                         <td class="text-center">
                             <div class="btn-group">
                                 <a ng-href="#!/editar-requisicao/{{requisicao.id}}" data-toggle="tooltip" title="Editar" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
-                                <a ng-click="requisicao.ativo ? desativar(requisicao.id) : ativar(requisicao.id)" data-toggle="tooltip" title="Trocar status" class="btn btn-xs" ng-class="requisicao.ativo ? 'btn-danger' : 'btn-success'"><i class="fa" ng-class="requisicao.ativo ? 'fa-times' : 'fa-check'"></i></a>
                             </div>
                         </td>
                     </tr>

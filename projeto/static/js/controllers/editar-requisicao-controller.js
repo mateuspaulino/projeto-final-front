@@ -15,7 +15,7 @@ app.controller("editarRequisicaoController", function($scope, $http){
                 return obj.professorDisciplina.professor.id == idUsuario;
             })
             $scope.requisicoes = filtroRequisicoes;
-            console.log(filtroRequisicoes);
+            // console.log(filtroRequisicoes);
             // TablesDatatables.init();
         } , function (response){
             alert("Sessão expirada");
