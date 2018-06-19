@@ -12,10 +12,12 @@ app.controller("editarDisciplinaController", function($scope, $http){
             // cria uma string com os professores da disciplina
             $.each($scope.disciplinas,function(i,d){
                 var str = "";
-                $.each($scope.disciplinas[i].professores,function(i,d){
-                    str += d.nome;
-                    if(i >= 1){
-                        str += " / ";
+                $.each($scope.disciplinas[i].professores,function(x,d){
+                    
+                    if(x >= 1){
+                        str = str +" , "+ d.nome;
+                    }else{
+                        str = str +""+ d.nome;
                     }
                 })
                 if(str===""){

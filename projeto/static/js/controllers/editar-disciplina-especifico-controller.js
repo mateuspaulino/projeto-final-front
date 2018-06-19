@@ -38,7 +38,7 @@ app.controller("editarDisciplinaEspecificoController", function($scope, $routePa
             data: $scope.disciplina
         })
         .then(function (response){
-            alert("Usuário alterado com sucesso");
+            alert("Disciplina alterada com sucesso");
             // $scope.disciplina = {};
             // redirecionar para a lista
             $location.path("/editar-disciplina");

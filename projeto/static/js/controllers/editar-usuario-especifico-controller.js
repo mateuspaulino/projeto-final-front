@@ -45,7 +45,12 @@ app.controller("editarUsuarioEspecificoController", function($scope, $routeParam
         delete $scope.usuario.perfil.descricao;
         delete $scope.usuario.salvo;
         delete $scope.usuario.naoSalvo;
+        if($scope.usuario.disciplinas){
+            delete $scope.usuario.disciplinas;
+        }
         console.table($scope.usuario);
+        console.log(JSON.stringify($scope.usuario));
+
 
         $http({
             method:'POST', 
@@ -58,8 +63,8 @@ app.controller("editarUsuarioEspecificoController", function($scope, $routeParam
             // redirecionar para a lista
             $location.path("/editar-usuario");
         } , function(){
-            alert("Sessão expirada");
-            logout();
+            // alert("Sessão expirada");
+            // logout();
         });
               
     }
