@@ -21,10 +21,12 @@ app.controller("editarRequisicaoController", function($scope, $http){
                 $.each(d.historico, function(indx, hist){
                     $scope.requisicoes[i].observacao = hist.observacao;
                 })
+                console.log(d.andamentoVigente.status.descricao);
                 if(d.andamentoVigente.status.descricao=='Em Impressão' || d.andamentoVigente.status.descricao=='Cancelada' || d.andamentoVigente.status.descricao=='Concluída'){
                     podeCancelar = false;
                 }
                 $scope.requisicoes[i].podeCancelar = podeCancelar;
+                podeCancelar = true;
             })
             console.log($scope.requisicoes);
             // TablesDatatables.init();
