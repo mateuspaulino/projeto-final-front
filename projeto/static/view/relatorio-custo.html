@@ -3,7 +3,7 @@
     <div class="content-header">
         <div class="header-section">
             <h1>
-                <i class="gi gi-notes_2"></i>Relatório de custo<br><small>Em caso de dúvidas, contate o coordenador</small>
+                <i class="gi gi-notes_2"></i>Relatório mensal de custo<br><small>Em caso de dúvidas, contate o suporte</small>
             </h1>
         </div>
     </div>
@@ -16,15 +16,15 @@
     <!-- Datatables Content -->
     <div class="block full">
         <div class="block-title">
-            <h2><strong>Lista</strong> geral</h2>
+            <h2><strong>Relatórios</strong></h2>
         </div>
-        <p>Insira o período desejado</p>
+        <p>Insira o mês desejado</p>
         <div>
             <form class="form-horizontal form-bordered">
                 <div class="form-group">
-                    <label class="col-md-4  control-label" for="dataInicio">Data</label>
+                    <label class="col-md-4  control-label" for="dataSelecionada">Data</label>
                     <div class="col-md-2">
-                        <input type="text" required id="dataInicio" name="dataInicio" class="form-control input-datepicker" data-date-format="dd/mm/yyyy" placeholder="dd/mm/yyyy" ng-model="custo.dataInicio">
+                        <input type="text" required id="dataSelecionada" name="dataSelecionada" class="form-control input-datepicker" data-date-format="dd/mm/yyyy" placeholder="dd/mm/yyyy" ng-model="dataSelecionada">
                     </div>
                     <div class="col-md-3">
                         <button type="button" class="btn btn-info" ng-click="gerarRelatorio(dataSelecionada)"><i class="fa fa-angle-right"></i> Gerar relatorio</button>
@@ -33,42 +33,33 @@
             </form>
         </div>
         <!-- <hr><hr> -->
-        <!-- <div class="table-responsive">
+        <div class="table-responsive">
             <table id="lista-requisicoes" class="table table-vcenter table-condensed table-bordered">
                 <thead>
                     <tr>
-                        <th class="text-center">ID</th>
-                        <th>Disciplina</th>
-                        <th>N. cópias</th>
-                        <th>Abertura</th>
-                        <th>Status</th>
-                        <th>Observação</th>
-                        <th class="text-center">Anexo</th>
-                        <th class="text-center">Mapa da requisição</th>
+                        <th style="font-size: 14px">Data Início</th>
+                        <th style="font-size: 14px">Data Término</th>
+                        <th style="font-size: 14px">Qtd. coloridas</th>
+                        <th style="font-size: 14px">Qtd. pretas</th>
+                        <th style="font-size: 14px">Custo total - coloridas</th>
+                        <th style="font-size: 14px">Custo total - pretas</th>
+                        <th style="font-size: 14px">Custo total</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="requisicao in requisicoes">
-                        <td class="text-center">{{requisicao.id}}</td>
-                        <td>{{requisicao.professorDisciplina.disciplina.descricao }}</td>
-                        <td>{{requisicao.numeroDeCopias}}</td>
-                        <td>{{requisicao.historico[0].data}}</td>
-                        <td><span class="label" ng-class="requisicao.andamentoVigente.status.descricao=='Aprovada' ? 'label-success' : requisicao.andamentoVigente.status.descricao=='Cancelada' ? 'label-danger' : requisicao.andamentoVigente.status.descricao=='Concluída' ? 'label-default' : requisicao.andamentoVigente.status.descricao=='Em Avaliação' ? 'label-warning' : 'label-primary'" >{{requisicao.andamentoVigente.status.descricao}}</span></td>
-                        <td>{{requisicao.observacao}}</td>
-                        <td class="text-center">
-                                <div class="btn-group">
-                                    <a ng-click="baixar(requisicao.id,requisicao.nomeArquivo)" data-toggle="tooltip" title="Baixar anexo" class="btn btn-xs" ng-class="'btn-warning'"><i class="fa" ng-class="'fa-angle-double-down'"></i></a>
-                                </div>
-                            </td>
-                        <td class="text-center">
-                            <div class="btn-group">
-                                <a ng-href="#!/mapa-requisicao/{{requisicao.id}}" data-toggle="tooltip" title="Mapa" class="btn btn-xs btn-success"><i class="fa fa-angle-double-right"></i> Ver mapa</a>
-                            </div>
-                        </td>
+                        <td>{{custoMensal.dataInicio}}</td>
+                        <td>{{custoMensal.dataFim}}</td>
+                        <td>{{custoMensal.quantidadeImpressoesColoridas}}</td>
+                        <td>{{custoMensal.quantidadeImpressoesPretas}}</td>
+                        <td>{{custoMensal.custoTotalImpressoesColoridas}}</td>
+                        <td>{{custoMensal.custoTotalImpressoesPretas}}</td>
+                        <td>{{custoMensal.somatorioCustoTotal}}</td>
                     </tr>
                 </tbody>
             </table>
-        </div> -->
+        </div>
     </div>
     <!-- END Datatables Content -->
 </div>
