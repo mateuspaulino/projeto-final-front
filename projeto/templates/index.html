@@ -80,6 +80,12 @@
         <!-- RELATÓRIOS - DISCIPLINA -->
         <script src="../static/js/controllers/relatorio-disciplina-controller.js"></script>
 
+        <!-- RELATÓRIOS - USUÁRIO -->
+        <script src="../static/js/controllers/relatorio-usuario-controller.js"></script>
+
+        <!-- RELATÓRIOS - SEGMENTO -->
+        <script src="../static/js/controllers/relatorio-segmento-controller.js"></script>
+
         <!-- INTERCEPTADOR DE REQUISIÇÕES -->
         <script src="../static/js/interceptor/token-interceptor.js"></script>
 
@@ -203,6 +209,12 @@
                                             </li>
                                             <li ng-show="checarPermissoes('Diretor')">
                                                 <a ng-href="#!/relatorio-disciplina">Relatório por disciplina</a>
+                                            </li>
+                                            <li ng-show="checarPermissoes('Diretor')">
+                                                <a ng-href="#!/relatorio-usuario">Relatório por usuário</a>
+                                            </li>
+                                            <li ng-show="checarPermissoes('Gerente')">
+                                                <a ng-href="#!/relatorio-segmento">Relatório por segmento</a>
                                             </li>
                                         </ul>
                                     </li>

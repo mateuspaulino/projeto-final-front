@@ -3,13 +3,13 @@
     <div class="content-header">
         <div class="header-section">
             <h1>
-                <i class="gi gi-notes_2"></i>Relatório por disciplina<br><small>Em caso de dúvidas, contate o suporte</small>
+                <i class="gi gi-notes_2"></i>Relatório por segmento<br><small>Em caso de dúvidas, contate o suporte</small>
             </h1>
         </div>
     </div>
     <ul class="breadcrumb breadcrumb-top">
         <li>Relatório</li>
-        <li><a href="">Disciplina</a></li>
+        <li><a href="">Usuário</a></li>
     </ul>
     <!-- END Datatables Header -->
 
@@ -18,19 +18,19 @@
         <div class="block-title">
             <h2><strong>Relatórios</strong></h2>
         </div>
-        <p>Selecione a disciplina desejada</p>
+        <p>Selecione o segmento desejado</p>
         <div>
             <form class="form-horizontal form-bordered">
                 <div class="form-group">
-                    <label class="col-md-4  control-label" for="disciplinaSelecionada" style="height: 35px">Disciplina</label>
+                    <label class="col-md-4  control-label" for="segmentoSelecionado" style="height: 35px">Segmento</label>
                     <div class="col-md-2">
-                            <select id="disciplinaSelecionada" required name="disciplinaSelecionada" class="form-control" size="1" style="height: 35px" ng-model="disciplinaSelecionada">
+                            <select id="segmentoSelecionado" required name="segmentoSelecionado" class="form-control" size="1" style="height: 35px" ng-model="segmentoSelecionado">
                                     <option value="">---Selecione---</option>    
-                                    <option ng-repeat="opt in disciplinas" value="{{opt.id}}">{{opt.descricao}}</option>
+                                    <option ng-repeat="opt in usuarios" value="{{opt.id}}">{{opt.nome}}</option>
                             </select>
                     </div>
                     <div class="col-md-3">
-                        <button type="button" class="btn btn-info" ng-click="gerarRelatorio(disciplinaSelecionada)"><i class="fa fa-angle-right"></i> Gerar relatorio</button>
+                        <button type="button" class="btn btn-info" ng-click="gerarRelatorio(segmentoSelecionado)"><i class="fa fa-angle-right"></i> Gerar relatorio</button>
                     </div>
                 </div>
             </form>
@@ -51,7 +51,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr ng-repeat="requisicao in requisicoes">
                         <!-- <td>{{relatorioDisciplinas.dataInicio}}</td> -->
                         <!-- <td>{{relatorioDisciplinas.dataFim}}</td> -->
                         <td>{{relatorioDisciplinas.quantidadeImpressoesColoridas}}</td>

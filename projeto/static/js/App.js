@@ -172,6 +172,14 @@ app.config(function($routeProvider) {
     templateUrl: '../static/view/relatorio-disciplina.html',
     controller: 'relatorioDisciplinaController',
   })
+  .when('/relatorio-usuario', {
+    templateUrl: '../static/view/relatorio-usuario.html',
+    controller: 'relatorioUsuarioController',
+  })
+  .when('/relatorio-segmento', {
+    templateUrl: '../static/view/relatorio-segmento.html',
+    controller: 'relatorioSegmentoController',
+  })
   .when('/', {
     templateUrl: '../static/view/home.html',
     controller: '',
