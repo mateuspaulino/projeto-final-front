@@ -1,0 +1,150 @@
+<div id="page-content">
+    <!-- Forms General Header -->
+    <div class="content-header">
+        <div class="header-section">
+            <h1>
+                <i class="gi gi-notes_2"></i>Mapa requisição<br><small>Em caso de dúvidas, contate o coordenador</small>
+            </h1>
+        </div>
+    </div>
+    <ul class="breadcrumb breadcrumb-top">
+        <li>Requisição</li>
+        <li><a href="">Mapa</a></li>
+    </ul>
+    <!-- END Forms General Header -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Basic Form Elements Block -->
+            <div class="block">
+                <!-- Basic Form Elements Title -->
+                <div class="block-title">
+                    <div class="block-options pull-right">
+                        <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-default toggle-bordered enable-tooltip" data-toggle="button" title="Toggles .form-bordered class">Sem bordas</a>
+                    </div>
+                    <h2><strong>Linha do tempo da</strong> Requisição</h2>
+                </div>
+                <!-- END Form Elements Title -->
+
+                <div class="timeline ">
+                    <h3 class="timeline-header">Requisição aberta em <small><strong>{{requisicao.dataAbertura}}</strong></small></h3>
+                    <!-- You can remove the class .timeline-hover if you don't want each event to be highlighted on mouse hover -->
+                    <ul class="timeline-list timeline-hover">
+                        <li>
+                            <div class="timeline-icon"><i class="fa fa-plus"></i></div>
+                            <div class="timeline-time">{{requisicao.dataAbertura}}<strong></strong></div>
+                            <div class="timeline-content">
+                                <strong>Início da linha do tempo</strong>
+                            </div>
+                        </li>
+                        <li class="active" ng-repeat="hist in requisicao.historico">
+                            <div class="timeline-icon"><i class="fa fa-file-text"></i></div>
+                            <div class="timeline-time"><strong>{{hist.data}}</strong></div>
+                            <div class="timeline-content">
+                                <p class="push-bit"><strong>{{hist.responsavel.nome}}</strong></p>
+                                Status da requisição:<strong> {{hist.status.descricao}}</strong>
+                                <p>Observação:<strong> {{hist.observacao!==null?hist.observacao:"Requisição criada"}}</strong></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="timeline-icon"><i class="fa fa-times"></i></div>
+                            <div class="timeline-time">{{requisicao.dataConclusao}}<strong></strong></div>
+                            <div class="timeline-content">
+                                <strong>Fim da linha do tempo</strong>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="timeline-icon success"><i class="fa fa-coffee"></i></div>
+                            <div class="timeline-content">
+                                <p class="push-bit"><strong>Informações sobre a requisição</strong></p>
+                                <p class="push-bit">Segue abaixo, mais detalhes sobre esta requisição</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <hr><hr>
+                 <!-- Basic Form Elements Title -->
+                 <div class="block-title">
+                        <h2><strong>Informações</strong> detalhadas</h2>
+                    </div>
+                    <!-- END Form Elements Title -->
+                <form class="form-horizontal form-bordered">
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Solicitante</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static">{{requisicao.professorDisciplina.professor.nome}}</p>
+                            </div>
+                        </div>
+    
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Duplex</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static">{{requisicao.duplex && 'Sim' || 'Não'}}</p>
+                            </div>
+                        </div>
+    
+                        <div class="form-group">
+                                <label class="col-md-3 control-label">Grampeada</label>
+                                <div class="col-md-9">
+                                    <p class="form-control-static">{{requisicao.grampeada && 'Sim' || 'Não'}}</p>
+                                </div>
+                            </div>
+    
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Colorida</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static">{{requisicao.colorida && 'Sim' || 'Não'}}</p>
+                            </div>
+                        </div>
+        
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Número de páginas</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static">{{requisicao.numeroDePaginas}}</p>
+                            </div>
+                        </div>
+    
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Número de cópias</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static">{{requisicao.numeroDeCopias}}</p>
+                            </div>
+                        </div>
+    
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Baixar anexo</label>
+                            <div class="col-md-9">
+                                <button type="button" class="btn btn-sm btn-default" ng-click="baixar(requisicao.id, requisicao.nomeArquivo)"><i class="fa fa-angle-right"></i> Baixar anexo</button>
+                                <!-- <p class="form-control-static">{{requisicao.numeroDeCopias}}</p> -->
+                            </div>
+                        </div>
+    
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Data de abertura</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static">{{requisicao.dataAbertura}}</p>
+                            </div>
+                        </div>
+    
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Disciplina</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static">{{requisicao.professorDisciplina.disciplina.descricao}}</p>
+                            </div>
+                        </div>
+    
+                        <div class="form-group">
+                                <label class="col-md-3 control-label">Histórico de observações</label>
+                                <div class="col-md-9">
+                                    <p class="form-control-static" ng-repeat="hist in requisicao.historico">{{hist.responsavel.nome}} : {{hist.observacao!==null?hist.observacao:"Criou a requisição"}} | {{hist.status.descricao}}</p>
+                                </div>
+                            </div>
+                    </form>
+            </div>
+            <!-- END Basic Form Elements Block -->
+        </div>
+
+    </div>
+
+</div>

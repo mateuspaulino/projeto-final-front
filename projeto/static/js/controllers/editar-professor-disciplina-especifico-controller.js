@@ -137,6 +137,7 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
                         // $scope.usuario = {};
                         // redirecionar para a lista
                     } , function(error){
+                        alert("Você não pode desassociar uma disciplina que já faz parte de uma requisição");
                         console.log('erro');
                         console.log(error);
                         // alert("Sessão expirada");

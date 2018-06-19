@@ -70,6 +70,10 @@
         <script src="../static/js/controllers/concluir-requisicao-especifico-controller.js"></script>
         <script src="../static/js/controllers/requisicoes-concluidas-controller.js"></script>
 
+        <!-- RELATÓRIOS - MAPA REQUISIÇÃO -->
+        <script src="../static/js/controllers/mapa-requisicao-controller.js"></script>
+        <script src="../static/js/controllers/mapa-requisicao-especifico-controller.js"></script>
+
         <!-- INTERCEPTADOR DE REQUISIÇÕES -->
         <script src="../static/js/interceptor/token-interceptor.js"></script>
 
@@ -182,6 +186,14 @@
                                         </li>
                                     </ul>
                                 </li>
+                                <li ng-show="checarPermissoes('Gerente, Diretor')">
+                                        <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator"></i><i class="gi gi-notes_2 sidebar-nav-icon"></i>Relatórios</a>
+                                        <ul>
+                                            <li ng-show="checarPermissoes('Gerente, Diretor')">
+                                                <a ng-href="#!/mapa-requisicao">Mapa de requisição</a>
+                                            </li>
+                                        </ul>
+                                    </li>
                                 <!-- <li ng-show="checarPermissoes('Professor')">
                                     <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator"></i><i class="gi gi-notes_2 sidebar-nav-icon"></i>Requisições</a>
                                     <ul>

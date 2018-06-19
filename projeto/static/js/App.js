@@ -156,6 +156,14 @@ app.config(function($routeProvider) {
     templateUrl: '../static/view/requisicoes-concluidas.html',
     controller: 'requisicoesConcluidasController',
   })
+  .when('/mapa-requisicao', {
+    templateUrl: '../static/view/mapa-requisicao.html',
+    controller: 'mapaRequisicaoController',
+  })
+  .when('/mapa-requisicao/:requisicaoId', {
+    templateUrl: '../static/view/mapa-requisicao-especifico.html',
+    controller: 'mapaRequisicaoEspecificoController',
+  })
   .when('/', {
     templateUrl: '../static/view/home.html',
     controller: '',
