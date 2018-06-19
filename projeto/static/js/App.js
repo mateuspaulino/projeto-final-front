@@ -164,6 +164,10 @@ app.config(function($routeProvider) {
     templateUrl: '../static/view/mapa-requisicao-especifico.html',
     controller: 'mapaRequisicaoEspecificoController',
   })
+  .when('/relatorio-custo', {
+    templateUrl: '../static/view/relatorio-custo.html',
+    controller: 'relatorioCustoController',
+  })
   .when('/', {
     templateUrl: '../static/view/home.html',
     controller: '',

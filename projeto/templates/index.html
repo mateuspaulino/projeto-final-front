@@ -74,6 +74,9 @@
         <script src="../static/js/controllers/mapa-requisicao-controller.js"></script>
         <script src="../static/js/controllers/mapa-requisicao-especifico-controller.js"></script>
 
+        <!-- RELATÓRIOS - CUSTO -->
+        <script src="../static/js/controllers/relatorio-custo-controller.js"></script>
+
         <!-- INTERCEPTADOR DE REQUISIÇÕES -->
         <script src="../static/js/interceptor/token-interceptor.js"></script>
 
@@ -191,6 +194,9 @@
                                         <ul>
                                             <li ng-show="checarPermissoes('Gerente, Diretor')">
                                                 <a ng-href="#!/mapa-requisicao">Mapa de requisição</a>
+                                            </li>
+                                            <li ng-show="checarPermissoes('Gerente')">
+                                                <a ng-href="#!/relatorio-custo">Relatório de custo</a>
                                             </li>
                                         </ul>
                                     </li>
