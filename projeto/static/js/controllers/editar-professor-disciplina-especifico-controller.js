@@ -59,6 +59,7 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
                     })
                     .then(function (response){
                         alert("Alteração concluída com sucesso");
+                        location.reload();
                         // $scope.usuario = {};
                         // redirecionar para a lista
                     } , function(){
@@ -68,7 +69,7 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
                 });
             }
         })
-
+        
     });
 
     desassociar.click(function() {
@@ -134,6 +135,7 @@ app.controller("editarProfessorDisciplinaEspecificoController", function($scope,
                     })
                     .then(function (response){
                         alert("Alteração concluída com sucesso");
+                        location.reload();
                         // $scope.usuario = {};
                         // redirecionar para a lista
                     } , function(error){
