@@ -28,12 +28,15 @@ app.controller("editarRequisicaoController", function($scope, $http){
     };
     carregarRequisicoes();
 
-    $scope.baixar = function(id){
+    $scope.baixar = function(id, nomeArq){
 
-        $http({method:'GET', url:"http://18.228.37.157/reprografiaapi/professor/requisicao/anexo/"+id+""})
-        .then(function (response){
-            console.log('foi');
-            console.log(response);
+        $http({
+            method:'GET', url:"http://18.228.37.157/reprografiaapi/professor/requisicao/anexo/"+id,
+            responseType: "arraybuffer"
+        })
+        .then(function (data, status, headers, config){
+            baixaArquivo(data, nomeArq);
+    
         } , function (error){
             console.log('erro');
             console.log(error);
@@ -42,14 +45,45 @@ app.controller("editarRequisicaoController", function($scope, $http){
     }
 
     // teste
-    // $http({method:'GET', url:"http://18.228.37.157/reprografiaapi/professor/requisicao/anexo/15"})
-    //     .then(function (response){
-    //         console.log('foi');
-    //         console.log(response);
-    //     } , function (error){
-    //         console.log('erro');
-    //         console.log(error);
+    // $http({
+    //     method:'GET', url:"http://18.228.37.157/reprografiaapi/professor/requisicao/anexo/15",
+    //     responseType: "arraybuffer"
+    // })
+    // .then(function (data, status, headers, config){
+    //     baixaArquivo(data, "mateus.png");
+
+    // } , function (error){
+    //     console.log('erro');
+    //     console.log(error);
+    // });
+
+    //     $(document).ready(function() {
     //     });
+        
+    //     function saveFile (name, type, data) {
+    //         if (data != null && navigator.msSaveBlob)
+    //             return navigator.msSaveBlob(new Blob([data], { type: type }), name);
+    //         var a = $("<a style='display: none;'/>");
+    //         var url = window.URL.createObjectURL(new Blob([data], {type: type}));
+    //             a.attr("href", url);
+    //             a.attr("download", name);
+    //             $("body").append(a);
+    //             a[0].click();
+    //         window.URL.revokeObjectURL(url);
+    //         a.remove();
+    //     }
+
+        // function saveImage(img,arquivo) {
+        //     var a = document.createElement("a");
+        //     document.body.appendChild(a);
+        //     a.style = "display: none";
+        //             var blob = new Blob([img], {type: "image/png"}),
+        //             url = window.URL.createObjectURL(blob);
+        //         a.href = url;
+        //         a.download = arquivo;
+        //         a.click();
+        //         window.URL.revokeObjectURL(url);
+        // };
     // $http({
     //     method:'GET', 
     //     url:"http://18.228.37.157/reprografiaapi/professor/requisicao/anexo/15",
@@ -58,19 +92,37 @@ app.controller("editarRequisicaoController", function($scope, $http){
     //         console.log('foi');
     //         console.log(data);
     //     });
-    $.ajax
-    ({
-      type: "GET",
-      url: "http://18.228.37.157/reprografiaapi/professor/requisicao/anexo/15",
-      dataType: 'json',
-      async: false,
-      headers: {
-        "Authorization": "Bearer 3bf7a768062783751a1855990716a061"
-      },
-      complete: function (d){
-        console.log(d);
-      }
-    });
+    // $.ajax
+    // ({
+    //   type: "GET",
+    //   url: "http://18.228.37.157/reprografiaapi/professor/requisicao/anexo/16",
+    //   dataType: 'json',
+    //   async: false,
+    //   headers: {
+    //     "Authorization": "Bearer 8163c438cdd527047b9164d29a646585"
+    //   },
+    //   responseType: "arraybuffer",
+    //   complete: function (d){
+    //     var file = new Blob([response.data], {type : response.headers('content-type')});
+	// 		                var fileURL   = URL.createObjectURL(file);
+	// 		                var a         = document.createElement('a');
+	// 		                a.href        = fileURL; 
+	// 		                a.target      = '_blank';
+	// 		                a.download    = scope.nomeArquivo360;
+	// 		                document.body.appendChild(a);
+							
+	// 		                if (firefox != -1) {
+	// 							a.click();
+	// 							document.body.removeChild(a);
+	// 						} else {
+	// 							$timeout(function() {
+	// 								a.click();
+	// 								document.body.removeChild(a);
+    //       console.log(d);
+    //     // $('#baixar-arq').attr('href', `data:image/png;base64,${encodeURIComponent(d.responseText)}`);
+        
+    //   }
+    // });
 
 
 

@@ -10,6 +10,21 @@ function verificaLogin(){
   }
 }
 
+//function baixa arquivo
+function baixaArquivo(data, nomeArquivo){
+  var file = new Blob([data.data], {type : data.headers('content-type')});
+  var fileURL   = URL.createObjectURL(file);
+  var a         = document.createElement('a');
+  a.href        = fileURL; 
+  a.target      = '_blank';
+  a.download    = nomeArquivo;
+  document.body.appendChild(a);
+  setTimeout(function(){
+      a.click();
+          document.body.removeChild(a);
+  },1000)
+}
+
 //chamada quando o usuário clica em sair
 function logout(){
   localStorage.clear();

@@ -19,7 +19,6 @@
             <h2><strong>Lista</strong> geral</h2>
         </div>
         <p>Abaixo suas requisições</p>
-
         <div class="table-responsive">
             <table id="lista-requisicoes" class="table table-vcenter table-condensed table-bordered">
                 <thead>
@@ -46,7 +45,7 @@
                         <td>{{requisicao.observacao}}</td>
                         <td class="text-center">
                                 <div class="btn-group">
-                                    <a ng-click="baixar(requisicao.id)" data-toggle="tooltip" title="Baixar anexo" class="btn btn-xs" ng-class="'btn-warning'"><i class="fa" ng-class="'fa-angle-double-down'"></i></a>
+                                    <a ng-click="baixar(requisicao.id,requisicao.nomeArquivo)" data-toggle="tooltip" title="Baixar anexo" class="btn btn-xs" ng-class="'btn-warning'"><i class="fa" ng-class="'fa-angle-double-down'"></i></a>
                                 </div>
                             </td>
                         <td class="text-center">
