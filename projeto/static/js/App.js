@@ -168,6 +168,10 @@ app.config(function($routeProvider) {
     templateUrl: '../static/view/relatorio-custo.html',
     controller: 'relatorioCustoController',
   })
+  .when('/relatorio-disciplina', {
+    templateUrl: '../static/view/relatorio-disciplina.html',
+    controller: 'relatorioDisciplinaController',
+  })
   .when('/', {
     templateUrl: '../static/view/home.html',
     controller: '',

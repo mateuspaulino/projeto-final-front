@@ -1,0 +1,68 @@
+<div id="page-content">
+    <!-- Datatables Header -->
+    <div class="content-header">
+        <div class="header-section">
+            <h1>
+                <i class="gi gi-notes_2"></i>Relatório por disciplina<br><small>Em caso de dúvidas, contate o suporte</small>
+            </h1>
+        </div>
+    </div>
+    <ul class="breadcrumb breadcrumb-top">
+        <li>Relatório</li>
+        <li><a href="">Disciplina</a></li>
+    </ul>
+    <!-- END Datatables Header -->
+
+    <!-- Datatables Content -->
+    <div class="block full">
+        <div class="block-title">
+            <h2><strong>Relatórios</strong></h2>
+        </div>
+        <p>Selecione a disciplina desejada</p>
+        <div>
+            <form class="form-horizontal form-bordered">
+                <div class="form-group">
+                    <label class="col-md-4  control-label" for="disciplinaSelecionada" style="height: 35px">Data</label>
+                    <div class="col-md-2">
+                            <select id="disciplinaSelecionada" required name="disciplinaSelecionada" class="form-control" size="1" style="height: 35px" ng-model="disciplinaSelecionada">
+                                    <option value="">---Selecione---</option>    
+                                    <option ng-repeat="opt in disciplinas" value="{{opt.id}}">{{opt.descricao}}</option>
+                            </select>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-info" ng-click="gerarRelatorio(disciplinaSelecionada)"><i class="fa fa-angle-right"></i> Gerar relatorio</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- <hr><hr> -->
+        <div class="table-responsive">
+            <table id="lista-requisicoes" class="table table-vcenter table-condensed table-bordered">
+                <thead>
+                    <tr>
+                        <th style="font-size: 14px">Data Início</th>
+                        <th style="font-size: 14px">Data Término</th>
+                        <th style="font-size: 14px">Qtd. coloridas</th>
+                        <th style="font-size: 14px">Qtd. pretas</th>
+                        <th style="font-size: 14px">Custo total - coloridas</th>
+                        <th style="font-size: 14px">Custo total - pretas</th>
+                        <th style="font-size: 14px">Custo total</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="requisicao in requisicoes">
+                        <td>{{custoMensal.dataInicio}}</td>
+                        <td>{{custoMensal.dataFim}}</td>
+                        <td>{{custoMensal.quantidadeImpressoesColoridas}}</td>
+                        <td>{{custoMensal.quantidadeImpressoesPretas}}</td>
+                        <td>{{custoMensal.custoTotalImpressoesColoridas}}</td>
+                        <td>{{custoMensal.custoTotalImpressoesPretas}}</td>
+                        <td>{{custoMensal.somatorioCustoTotal}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- END Datatables Content -->
+</div>

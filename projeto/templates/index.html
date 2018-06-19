@@ -77,6 +77,9 @@
         <!-- RELATÓRIOS - CUSTO -->
         <script src="../static/js/controllers/relatorio-custo-controller.js"></script>
 
+        <!-- RELATÓRIOS - DISCIPLINA -->
+        <script src="../static/js/controllers/relatorio-disciplina-controller.js"></script>
+
         <!-- INTERCEPTADOR DE REQUISIÇÕES -->
         <script src="../static/js/interceptor/token-interceptor.js"></script>
 
@@ -197,6 +200,9 @@
                                             </li>
                                             <li ng-show="checarPermissoes('Gerente')">
                                                 <a ng-href="#!/relatorio-custo">Relatório de custo</a>
+                                            </li>
+                                            <li ng-show="checarPermissoes('Diretor')">
+                                                <a ng-href="#!/relatorio-disciplina">Relatório por disciplina</a>
                                             </li>
                                         </ul>
                                     </li>
