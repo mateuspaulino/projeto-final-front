@@ -27,27 +27,27 @@ app.controller("relatorioUsuarioController", function($scope, $http){
     };
     carregarRequisicoes();
 
-    // $scope.usuarios = {};
-    // $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/suporte/pessoa/listar'})
-    // .then(function (response){
-    //     $scope.usuarios = response.data;
-    //     console.log(response.data);
-    // } , function (response){
-    //     console.log(response);
-    // });
+    $scope.usuarios = {};
+    $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/suporte/professor/listar'})
+    .then(function (response){
+        $scope.usuarios = response.data;
+        console.log(response.data);
+    } , function (response){
+        console.log(response);
+    });
 
 
-    $scope.disciplinaSelecionada = "";
+    $scope.professorSelecionado = "";
 
     $scope.custoMensal = {};
 
-    $scope.gerarRelatorio = function(disciplinaSelecionada){
-        if(disciplinaSelecionada!==""){
-            disciplinaSelecionada = parseInt(disciplinaSelecionada);
+    $scope.gerarRelatorio = function(professorSelecionado){
+        if(professorSelecionado!==""){
+            professorSelecionado = parseInt(professorSelecionado);
             //gera relatorio
-            // console.log("http://18.228.37.157/reprografiaapi/diretor/relatorio/custopordisciplina?idDisciplina="+disciplinaSelecionada);
+            // console.log("http://18.228.37.157/reprografiaapi/diretor/relatorio/custopordisciplina?idDisciplina="+professorSelecionado);
             $http({
-                method:'GET', url:"http://18.228.37.157/reprografiaapi/diretor/relatorio/custopordisciplina?idDisciplina="+disciplinaSelecionada,
+                method:'GET', url:"http://18.228.37.157/reprografiaapi/diretor/relatorio/custopordisciplina?idDisciplina="+professorSelecionado,
             })
             .then(function (response){
                 console.log(response.data);
