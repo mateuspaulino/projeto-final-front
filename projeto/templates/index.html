@@ -63,10 +63,12 @@
         <!-- REQUISIÇÃO - COORDENADOR -->
         <script src="../static/js/controllers/aprovar-requisicao-controller.js"></script>
         <script src="../static/js/controllers/aprovar-requisicao-especifico-controller.js"></script>
+        <script src="../static/js/controllers/requisicoes-aprovadas-controller.js"></script>
 
         <!-- REQUISIÇÃO - REPROGRAFIA -->
         <script src="../static/js/controllers/concluir-requisicao-controller.js"></script>
         <script src="../static/js/controllers/concluir-requisicao-especifico-controller.js"></script>
+        <script src="../static/js/controllers/requisicoes-concluidas-controller.js"></script>
 
         <!-- INTERCEPTADOR DE REQUISIÇÕES -->
         <script src="../static/js/interceptor/token-interceptor.js"></script>
@@ -170,6 +172,13 @@
                                         </li>
                                         <li ng-show="checarPermissoes('Reprografia')">
                                             <a ng-href="#!/concluir-requisicao">Concluir requisição</a>
+                                        </li>
+                                        <!-- log -->
+                                        <li ng-show="checarPermissoes('Coordenador')">
+                                            <a ng-href="#!/requisicoes-aprovadas">Requisições aprovadas</a>
+                                        </li>
+                                        <li ng-show="checarPermissoes('Reprografia')">
+                                            <a ng-href="#!/requisicoes-concluidas">Requisições concluídas</a>
                                         </li>
                                     </ul>
                                 </li>

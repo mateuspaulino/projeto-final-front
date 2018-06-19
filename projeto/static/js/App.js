@@ -148,6 +148,14 @@ app.config(function($routeProvider) {
     templateUrl: '../static/view/concluir-requisicao-especifico.html',
     controller: 'concluirRequisicaoEspecificoController',
   })
+  .when('/requisicoes-aprovadas', {
+    templateUrl: '../static/view/requisicoes-aprovadas.html',
+    controller: 'requisicoesAprovadasController',
+  })
+  .when('/requisicoes-concluidas', {
+    templateUrl: '../static/view/requisicoes-concluidas.html',
+    controller: 'requisicoesConcluidasController',
+  })
   .when('/', {
     templateUrl: '../static/view/home.html',
     controller: '',
