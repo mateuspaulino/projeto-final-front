@@ -6,6 +6,8 @@ app.controller("editarRequisicaoController", function($scope, $http){
 
     var idUsuario = localStorage.getItem("idUsuario");
 
+    var podeCancelar = true;
+
     carregarRequisicoes= function (){		
         $http({method:'GET', url:'http://18.228.37.157/reprografiaapi/professor/requisicao/listar'})
         .then(function (response){
@@ -19,6 +21,10 @@ app.controller("editarRequisicaoController", function($scope, $http){
                 $.each(d.historico, function(indx, hist){
                     $scope.requisicoes[i].observacao = hist.observacao;
                 })
+                if(d.andamentoVigente.status.descricao=='Em Impressão' || d.andamentoVigente.status.descricao=='Cancelada' || d.andamentoVigente.status.descricao=='Concluída'){
+                    podeCancelar = false;
+                }
+                $scope.requisicoes[i].podeCancelar = podeCancelar;
             })
             console.log($scope.requisicoes);
             // TablesDatatables.init();

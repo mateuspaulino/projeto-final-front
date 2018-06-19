@@ -49,7 +49,7 @@
                                 </div>
                             </td>
                         <td class="text-center">
-                            <div class="btn-group" ng-hide="requisicao.andamentoVigente.status.descricao!=='Em Elaboração'">
+                            <div class="btn-group" ng-hide="!requisicao.podeCancelar">
                                 <a ng-click="cancelar(requisicao.id)" data-toggle="tooltip" title="Cancelar" class="btn btn-xs" ng-class="'btn-danger'"><i class="fa" ng-class="'fa-times'"></i></a>
                             </div>
                         </td>
