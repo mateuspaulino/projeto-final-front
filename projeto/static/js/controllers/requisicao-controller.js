@@ -151,10 +151,11 @@ app.controller("requisicaoController", function($scope, $http){
         }).then(function(response) {
             alert("Requisição criada com sucesso");
             $scope.requisicao = {};
-        }, function(response) {
+        }, function(error) {
             alert(response);
             console.log('erro');
             console.log(response);
+            alert(error);
         });
 
         // $http.post('http://18.228.37.157/reprografiaapi/professor/requisicao/cadastrar', fd, {

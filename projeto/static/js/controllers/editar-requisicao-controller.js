@@ -146,6 +146,7 @@ app.controller("editarRequisicaoController", function($scope, $http){
                 "observacao": observacao
             };
             console.log(obj);
+            console.log(JSON.stringify(obj));
             $http({
                 method:'POST', 
                 url:'http://18.228.37.157/reprografiaapi/geral/requisicao/alterar',
