@@ -17,7 +17,7 @@ app.controller("aprovarRequisicaoController", function($scope, $http){
             $scope.requisicoes = response.data;
             console.log(response.data);
             
-            //observacak
+            //observacao
             $.each($scope.requisicoes, function(i,d){
                 $.each(d.historico, function(indx, hist){
                     $scope.requisicoes[i].observacao = hist.observacao;

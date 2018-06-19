@@ -25,6 +25,22 @@ app.controller("aprovarRequisicaoEspecificoController", function($scope, $routeP
     };
     carregarRequisicao();
 
+    $scope.baixar = function(id, nomeArq){
+
+        $http({
+            method:'GET', url:"http://18.228.37.157/reprografiaapi/professor/requisicao/anexo/"+id,
+            responseType: "arraybuffer"
+        })
+        .then(function (data, status, headers, config){
+            baixaArquivo(data, nomeArq);
+    
+        } , function (error){
+            console.log('erro');
+            console.log(error);
+        });
+
+    }
+
     $scope.observacao = "";
 
     $scope.aprovar= function(id){
