@@ -40,8 +40,8 @@
             <table id="lista-requisicoes" class="table table-vcenter table-condensed table-bordered">
                 <thead>
                     <tr>
-                        <th style="font-size: 14px">Data Início</th>
-                        <th style="font-size: 14px">Data Término</th>
+                        <!-- <th style="font-size: 14px">Data Início</th> -->
+                        <!-- <th style="font-size: 14px">Data Término</th> -->
                         <th style="font-size: 14px">Qtd. coloridas</th>
                         <th style="font-size: 14px">Qtd. pretas</th>
                         <th style="font-size: 14px">Custo total - coloridas</th>
@@ -51,14 +51,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="requisicao in requisicoes">
-                        <td>{{custoMensal.dataInicio}}</td>
-                        <td>{{custoMensal.dataFim}}</td>
-                        <td>{{custoMensal.quantidadeImpressoesColoridas}}</td>
-                        <td>{{custoMensal.quantidadeImpressoesPretas}}</td>
-                        <td>{{custoMensal.custoTotalImpressoesColoridas}}</td>
-                        <td>{{custoMensal.custoTotalImpressoesPretas}}</td>
-                        <td>{{custoMensal.somatorioCustoTotal}}</td>
+                    <tr>
+                        <!-- <td>{{relatorioDisciplinas.dataInicio}}</td> -->
+                        <!-- <td>{{relatorioDisciplinas.dataFim}}</td> -->
+                        <td>{{relatorioDisciplinas.quantidadeImpressoesColoridas}}</td>
+                        <td>{{relatorioDisciplinas.quantidadeImpressoesPretas}}</td>
+                        <td>{{relatorioDisciplinas.custoTotalImpressoesColoridas}}</td>
+                        <td>{{relatorioDisciplinas.custoTotalImpressoesPretas}}</td>
+                        <td>{{relatorioDisciplinas.somatorioCustoTotal}}</td>
                     </tr>
                 </tbody>
             </table>
