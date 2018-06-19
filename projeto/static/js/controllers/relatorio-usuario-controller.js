@@ -45,21 +45,20 @@ app.controller("relatorioUsuarioController", function($scope, $http){
         if(professorSelecionado!==""){
             professorSelecionado = parseInt(professorSelecionado);
             //gera relatorio
-            // console.log("http://18.228.37.157/reprografiaapi/diretor/relatorio/custopordisciplina?idDisciplina="+professorSelecionado);
             $http({
-                method:'GET', url:"http://18.228.37.157/reprografiaapi/diretor/relatorio/custopordisciplina?idDisciplina="+professorSelecionado,
+                method:'GET', url:"http://18.228.37.157/reprografiaapi/gerente/relatorio/custoporprofessor?idProfessor="+professorSelecionado,
             })
             .then(function (response){
                 console.log(response.data);
-                $scope.relatorioDisciplinas = response.data;
+                $scope.relatorioProfessor = response.data;
             } , function (error){
                 console.log('erro');
                 console.log(error);
-                $scope.relatorioDisciplinas = {};
-                alert("Nenhum resultado para essa disciplina");
+                $scope.relatorioProfessor = {};
+                alert("Nenhum resultado para esse professor");
             });
         }else{
-            alert("Selecione uma disciplina");
+            alert("Selecione um professor");
         }
 
     }

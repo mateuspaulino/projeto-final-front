@@ -54,15 +54,44 @@
                     <tr ng-repeat="requisicao in requisicoes">
                         <!-- <td>{{relatorioDisciplinas.dataInicio}}</td> -->
                         <!-- <td>{{relatorioDisciplinas.dataFim}}</td> -->
-                        <td>{{relatorioDisciplinas.quantidadeImpressoesColoridas}}</td>
-                        <td>{{relatorioDisciplinas.quantidadeImpressoesPretas}}</td>
-                        <td>{{relatorioDisciplinas.custoTotalImpressoesColoridas}}</td>
-                        <td>{{relatorioDisciplinas.custoTotalImpressoesPretas}}</td>
-                        <td>{{relatorioDisciplinas.somatorioCustoTotal}}</td>
+                        <td>{{relatorioProfessor.quantidadeImpressoesColoridas}}</td>
+                        <td>{{relatorioProfessor.quantidadeImpressoesPretas}}</td>
+                        <td>{{relatorioProfessor.custoTotalImpressoesColoridas}}</td>
+                        <td>{{relatorioProfessor.custoTotalImpressoesPretas}}</td>
+                        <td>{{relatorioProfessor.somatorioCustoTotal}}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        <hr><hr>
+        <p>Requisições conlcuídas dese professor</p>
+        <div class="table-responsive">
+                <table id="lista-requisicoes" class="table table-vcenter table-condensed table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="font-size: 14px">Id</th>
+                            <th style="font-size: 14px">N. páginas</th>
+                            <th style="font-size: 14px">N. cópias</th>
+                            <th style="font-size: 14px">Colorida</th>
+                            <th style="font-size: 14px">Data Início</th>
+                            <th style="font-size: 14px">Data fim</th>
+                            <th style="font-size: 14px">Custo total</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="requisicao in relatorioProfessor.requisicoes">
+                            <td>{{requisicao.id}}</td>
+                            <td>{{requisicao.numeroDePaginas}}</td>
+                            <td>{{requisicao.numeroDeCopias}}</td>
+                            <td>{{requisicao.colorida ? 'Sim' : 'Não'}}</td>
+                            <td>{{requisicao.dataAbertura}}</td>
+                            <td>{{requisicao.dataConclusao}}</td>
+                            <td>{{requisicao.custoDaRequisicao}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
     </div>
     <!-- END Datatables Content -->
 </div>
