@@ -31,33 +31,33 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="cota">Cota</label>
                         <div class="col-md-9">
-                            <input type="number" step="0.01" required id="cota" name="cota" class="form-control" placeholder="100" ng-model="custo.cota">
+                            <input type="number" step="1" min="1" required id="cota" name="cota" class="form-control" placeholder="100" ng-model="custo.cota">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="custoFixoPreta">Custo Fixo - Preta</label>
                         <div class="col-md-9">
-                            <input type="number" step="0.01" required id="custoFixoPreta" name="custoFixoPreta" class="form-control" placeholder="0.1" ng-model="custo.custoFixoPreta">
+                            <input type="number" min="0" step="0.01" required id="custoFixoPreta" name="custoFixoPreta" class="form-control" placeholder="0.1" ng-model="custo.custoFixoPreta">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="custoFixoColorida">Custo Fixo - Colorida</label>
                         <div class="col-md-9">
-                            <input type="number" step="0.01" required id="custoFixoColorida" name="custoFixoColorida" class="form-control" placeholder="0.1" ng-model="custo.custoFixoColorida">
+                            <input type="number" min="0" step="0.01" required id="custoFixoColorida" name="custoFixoColorida" class="form-control" placeholder="0.1" ng-model="custo.custoFixoColorida">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="valorExcPreta">Valor Excedente - Preta</label>
                         <div class="col-md-9">
-                            <input type="number" step="0.01" required id="valorExcPreta" name="valorExcPreta" class="form-control" placeholder="0.1" ng-model="custo.valorExcPreta">
+                            <input type="number" min="0" step="0.01" required id="valorExcPreta" name="valorExcPreta" class="form-control" placeholder="0.1" ng-model="custo.valorExcPreta">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="valorExcColorida">Valor Excedente - Colorida</label>
                         <div class="col-md-9">
-                            <input type="number" step="0.01" required id="valorExcColorida" name="valorExcColorida" class="form-control" placeholder="0.1" ng-model="custo.valorExcColorida">
+                            <input type="number" min="0" step="0.01" required id="valorExcColorida" name="valorExcColorida" class="form-control" placeholder="0.1" ng-model="custo.valorExcColorida">
                         </div>
                     </div>
 

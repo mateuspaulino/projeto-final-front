@@ -88,7 +88,7 @@
                         <label class="col-md-4 control-label" for="numero_paginas">Número de páginas <span class="text-danger">*</span></label>
                         <div class="col-md-6">
                             <div class="input-group">
-                                <input required type="number" id="numero_paginas" name="numero_paginas" class="form-control" placeholder="1" ng-model="requisicao.numeroDePaginas">
+                                <input step="1" min="1" required type="number" id="numero_paginas" name="numero_paginas" class="form-control" placeholder="1" ng-model="requisicao.numeroDePaginas">
                                 <span class="input-group-addon"><i class="gi gi-asterisk"></i></span>
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                         <label class="col-md-4 control-label" for="numero_copias">Número de cópias <span class="text-danger">*</span></label>
                         <div class="col-md-6">
                             <div class="input-group">
-                                <input required type="number" id="numero_copias" name="numero_copias" class="form-control" placeholder="1" ng-model="requisicao.numeroDeCopias">
+                                <input step="1" min="1" required type="number" id="numero_copias" name="numero_copias" class="form-control" placeholder="1" ng-model="requisicao.numeroDeCopias">
                                 <span class="input-group-addon"><i class="gi gi-asterisk"></i></span>
                             </div>
                         </div>
